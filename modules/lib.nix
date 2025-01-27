@@ -6,5 +6,6 @@
     ./nvidia.nix
     ./terminal_emulator.nix
     ./waybar.nix
+    ./steam.nix
   ];
 }

@@ -19,6 +19,8 @@
   hyprland.wlr_no_hardware_cursors = true;  
   hyprland.enable = true;
 
+  steam.enable = true;
+
   # TODO set up breeze grub theme
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
