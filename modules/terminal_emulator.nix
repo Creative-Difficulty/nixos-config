@@ -6,8 +6,14 @@
       default = "kitty";
       description = "Which terminal emulator to use";
     };
-    };
-    config = lib.mkIf config.terminal_emulator.enable {
-      environment.systemPackages = [ pkgs.kitty ]; # TODO!!!
-    };
- }
+  };
+
+  config = lib.mkIf config.terminal_emulator.enable {
+    environment.systemPackages = 
+      if config.terminal_emulator.choice == "kitty" then
+        [ pkgs.kitty ]
+      else if config.terminal_emulator.choice == "alacritty" then
+        [ pkgs.alacritty ]
+      else [ ];
+  };
+}
