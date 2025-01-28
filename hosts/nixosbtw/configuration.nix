@@ -18,6 +18,9 @@
 
   hyprland.wlr_no_hardware_cursors = true;  
   hyprland.enable = true;
+#  waybar.enable = true; # TODO make this an option in modules/waybar.nix
+
+  terminal_emulator.enable = true; # "kitty" by default
 
   steam.enable = true;
 
@@ -70,7 +73,7 @@
     # The Nano editor is also installed by default!
     fastfetch
     btop
-    tree
+    git
   ];
 
   services.openssh = {

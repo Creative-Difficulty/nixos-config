@@ -5,7 +5,7 @@
       (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ]; }))
     ];
 
-    audio.enable = lib.mkOverride 0 true;
+#    audio.enable = lib.mkOverride 0 true; # TODO!!!!
 
   #  hardware = {
       # TODO lib.mkOverride or smth like that
