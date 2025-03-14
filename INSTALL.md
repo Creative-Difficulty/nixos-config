@@ -2,10 +2,11 @@
 
 ## 1. On target (in installer)
 
-1. (Run `sudo su` to become superuser) Maybe not bc we use the `nixos` user instead for installing anyways
-2. Run `passwd` to set the user (and ssh password)
-3. Run `ip addr` to get IP address
-4. Get the drive paths (`sudo fdisk -l`) and adjust them in the disko configuration if necessary
+1. Make sure you're installing NixOS on its own drive, as disko will first nuke the drive it's used on
+2. (Run `sudo su` to become superuser) Maybe not bc we use the `nixos` user instead for installing anyways
+3. Run `passwd` to set the user (and ssh password)
+4. Run `ip addr` to get IP address
+5. Get the drive paths (`sudo fdisk -l`) and adjust them in the disko configuration if necessary
     - After installing, modify the configuration to use the path or uuid or model or smth instead of z.B. `/dev/nvme0n1`
 
 ## 2. On host
