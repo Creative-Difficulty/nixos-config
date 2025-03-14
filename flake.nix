@@ -48,5 +48,3 @@
 }
 # 4. märz hannah
 # 23. mai vali geburtstag
-
-# SSHPASS='rapidwien' nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ./hosts/nixosbtw/hardware-configuration.nix --flake '.#nixosbtw' --env-password 'rapidwien' --build-on-remote --target-host nixos@192.168.0.100
