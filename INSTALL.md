@@ -1,0 +1,25 @@
+# How to install this configuration flake using nixos-anywhere
+
+## 1. On target (in installer)
+
+1. (Run `sudo su` to become superuser) Maybe not bc we use the `nixos` user instead for installing anyways
+2. Run `passwd` to set the user (and ssh password)
+3. Run `ip addr` to get IP address
+4. Get the drive paths (`sudo fdisk -l`) and adjust them in the disko configuration if necessary
+    - After installing, modify the configuration to use the path or uuid or model or smth instead of z.B. `/dev/nvme0n1`
+
+## 2. On host
+
+1. Make Sure Nix is installed and add `experimental-features = nix-command flakes` to the `nix.conf`
+2. Run:
+
+    ```bash
+    SSHPASS='sshpassword' nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ./hosts/nixosbtw/hardware-configuration.nix --flake '.#nixosbtw' --env-password 'sshpassword' --build-on remote --target-host nixos@192.168.0.100
+    ```
+
+---
+
+## 3. After install
+
+TODO: copy configuration over to target machine
+(NOTE: YOU HAVE TO BOOT THE INSTALLER IN UEFI MODE)?

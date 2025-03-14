@@ -16,8 +16,3 @@
     # };
   };
 }
-
-# 1. Run `passwd`
-# 1. Run `ip addr` to get IP address
-
-# TODO copy configuration over to target machine
