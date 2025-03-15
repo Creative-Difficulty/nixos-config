@@ -18,14 +18,12 @@
     SSHPASS='sshpassword' nix run github:nix-community/nixos-anywhere -- --generate-hardware-config nixos-generate-config ./hosts/nixosbtw/hardware-configuration.nix --flake '.#nixosbtw' --env-password 'sshpassword' --build-on remote --target-host nixos@192.168.0.100
     ```
 
----
-
 ## 3. After install
 
 (NOTE: YOU HAVE TO BOOT THE INSTALLER IN UEFI MODE)?
 
-1. Copy configuration over to target machine: `git clone https://github.com/Creative-Difficulty/nixos-config.git`
-2. Run `sudo nixos-rebuild switch --flake .#nixosbtw`
+1. Copy configuration over to the target machine: `git clone https://github.com/Creative-Difficulty/nixos-config.git`
+2. Run `sudo nixos-rebuild switch --flake .#nixosbtw` to make sure the config from the Git repo gets applied over the one used by nixos-anywhere.
 3. Install home-manager standalone:
 
     ```bash
@@ -36,6 +34,10 @@
 
 4. Build & use the home-manager config: `home-manager switch --flake .`
 
+## 4. Tidbits/cheatsheet
+
+- To update the flake's inputs: `nix flake update`
+
 TODO: Use git ssh with public/private keys.
-TODO: configurae windwo swallowing
-TODO: fix disk names to make them oersistent in disko
+TODO: configure window swallowing hyprland
+TODO: fix disk names to make them persistent in disko
