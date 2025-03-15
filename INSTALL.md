@@ -34,13 +34,24 @@
 
 4. Build & use the home-manager config: `home-manager switch --flake .`
 
+---
+
 ## 4. Tidbits/cheatsheet
 
-- To update the flake's inputs: `nix flake update`
+- To update the flake's inputs in the lockfile: `nix flake update`
 - yazi Keybindings: <https://yazi-rs.github.io/docs/quick-start/#keybindings>
 
-## 5. Notes pertaining to the current state of this config
+## 5. TODOs pertaining to the current state of this config
 
-- TODO: configure window swallowing hyprland: <https://www.reddit.com/r/hyprland/comments/xsk2ty/comment/jarfecv/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
-- TODO: Test [persistent disk names](https://wiki.archlinux.org/title/Persistent_block_device_naming#:~:text=the%20mkswap%20utility.-,by%2Did%20and%20by%2Dpath,-by%2Did) by [reformatting using disko](https://github.com/nix-community/disko/blob/master/docs/quickstart.md#step-6-run-disko-to-partition-format-and-mount-your-disks), try to make it non-destructive using only the `mount` mode argument?.
-- TODO: Declare git ssh private and public keys (sops-nix?) using home-manager. Load the key onto a USB as a primary medium?
+- [ ] TODO: Declare git ssh private and public keys (sops-nix?) using home-manager. Load the key onto a USB as a primary medium?
+- [ ] TODO: Declare Hyprland keyboard layout using home-manager
+- [ ] TODO: fix confusion with flake- and standalone home-manager
+- [ ] TODO: configure window swallowing hyprland: <https://www.reddit.com/r/hyprland/comments/xsk2ty/comment/jarfecv/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
+- [ ] TODO: Test [persistent disk names](https://wiki.archlinux.org/title/Persistent_block_device_naming#:~:text=the%20mkswap%20utility.-,by%2Did%20and%20by%2Dpath,-by%2Did) by [reformatting using disko](https://github.com/nix-community/disko/blob/master/docs/quickstart.md#step-6-run-disko-to-partition-format-and-mount-your-disks), try to make it non-destructive using only the `mount` mode argument?.
+
+## 6. Future Possible endeavors with this config
+
+- [ ] Use home-manager also on mac
+- [ ] Firefox -> Librewolf
+- [ ] Declare Firefox and vscodium preferences and extensions
+- [ ] Comfy nix tree thingy (vimjoyer video)
