@@ -37,6 +37,7 @@
 ## 4. Tidbits/cheatsheet
 
 - To update the flake's inputs: `nix flake update`
+- yazi Keybindings: <https://yazi-rs.github.io/docs/quick-start/#keybindings>
 
 TODO: Use git ssh with public/private keys.
 TODO: configure window swallowing hyprland
