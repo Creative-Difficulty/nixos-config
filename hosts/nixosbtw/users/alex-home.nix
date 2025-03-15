@@ -35,9 +35,18 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     file
-    yazi
     firefox
   ];
+
+  programs.yazi = {
+    enable = true;
+    settings.manager = {
+      show_hidden = true;
+      sort_by = "mtime";
+      sort_dir_first = true;
+      # sort_reverse = true;
+    };
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
