@@ -22,8 +22,20 @@
 
 ## 3. After install
 
-TODO: Use git ssh with public/private keys.
+(NOTE: YOU HAVE TO BOOT THE INSTALLER IN UEFI MODE)?
 
 1. Copy configuration over to target machine: `git clone https://github.com/Creative-Difficulty/nixos-config.git`
 2. Run `sudo nixos-rebuild switch --flake .#nixosbtw`
-(NOTE: YOU HAVE TO BOOT THE INSTALLER IN UEFI MODE)?
+3. Install home-manager standalone:
+
+    ```bash
+    nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+    nix-channel --update
+    nix-shell '<home-manager>' -A install
+    ```
+
+4. Build & use the home-manager config: `home-manager switch --flake .`
+
+TODO: Use git ssh with public/private keys.
+TODO: configurae windwo swallowing
+TODO: fix disk names to make them oersistent in disko
