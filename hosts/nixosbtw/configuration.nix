@@ -6,7 +6,6 @@
 {
   imports = [
     ./hardware-configuration.nix 
-    inputs.home-manager.nixosModules.default
 
     ../../modules/lib.nix
     ../../vars.nix
@@ -37,13 +36,6 @@
       extraConfig = ''
         set timeout=50
       '';
-    };
-  };
-  
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      "${config.vars.mainUser}" = import ./users/${config.vars.mainUser}-home.nix;
     };
   };
 
