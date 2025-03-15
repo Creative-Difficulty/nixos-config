@@ -23,7 +23,7 @@
 ## 3. After install
 
 TODO: Use git ssh with public/private keys.
+
 1. Copy configuration over to target machine: `git clone https://github.com/Creative-Difficulty/nixos-config.git`
 2. Run `sudo nixos-rebuild switch --flake .#nixosbtw`
 (NOTE: YOU HAVE TO BOOT THE INSTALLER IN UEFI MODE)?
-
