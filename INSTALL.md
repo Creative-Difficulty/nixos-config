@@ -40,6 +40,8 @@
 
 - To update the flake's inputs in the lockfile: `nix flake update`
 - yazi Keybindings: <https://yazi-rs.github.io/docs/quick-start/#keybindings>
+- REPL: `nix repl`
+- Find a specific version of a package: <https://www.nixhub.io/>
 
 ## 5. TODOs pertaining to the current state of this config
 

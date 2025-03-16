@@ -15,32 +15,32 @@
     };
   };
 
-  outputs = { self, nixpkgs, disko, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, disko, home-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
-    in {    
-    nixosConfigurations = {
-      nixosbtw = nixpkgs.lib.nixosSystem {
-        inherit system;
-        # Give the configuration access to inputs of the flake and outputs
-        specialArgs = { inherit inputs self; };
-        modules = [
-          disko.nixosModules.disko
-          ./hosts/nixosbtw/hardware-configuration.nix
-          ./hosts/nixosbtw/configuration.nix
-        ];
-      }; # nixosbtw
-    }; # nixosconfigurations
+    in {
+      nixosConfigurations = {
+        nixosbtw = nixpkgs.lib.nixosSystem {
+          inherit system;
+          # Give the configuration access to outputs of the flake
+          specialArgs = { inherit self; };
+          modules = [
+            disko.nixosModules.disko
+            ./hosts/nixosbtw/hardware-configuration.nix
+            ./hosts/nixosbtw/configuration.nix
+          ];
+        }; # nixosbtw
+      }; # nixosconfigurations
 
-    homeConfigurations."alex" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
-      modules = [ ./hosts/nixosbtw/users/alex.nix ];
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
-    };
-  }; # let ... in ...
+      homeConfigurations."alex" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        # Specify your home configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [ ./hosts/nixosbtw/users/alex.nix ];
+        # Optionally use extraSpecialArgs
+        # to pass through arguments to home.nix
+      };
+    }; # let ... in ...
 }
 
