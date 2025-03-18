@@ -96,6 +96,7 @@ This doesn't clutter your system with ventoy-related files, as it only instantia
 - [ ] TODO: fix confusion with flake- and standalone home-manager
 - [ ] TODO: configure window swallowing hyprland: <https://www.reddit.com/r/hyprland/comments/xsk2ty/comment/jarfecv/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
 - [ ] TODO: Test [persistent disk names](https://wiki.archlinux.org/title/Persistent_block_device_naming#:~:text=the%20mkswap%20utility.-,by%2Did%20and%20by%2Dpath,-by%2Did) by [reformatting using disko](https://github.com/nix-community/disko/blob/master/docs/quickstart.md#step-6-run-disko-to-partition-format-and-mount-your-disks), try to make it non-destructive using only the `mount` mode argument?.
+- [ ] TODO: Add `iotop` to config to monitor disk IO
 
 ## 7. Future endeavors with this config
 
