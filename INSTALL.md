@@ -52,7 +52,9 @@
 
 1. For some reason, installation via the web-UI as described [in this blog post](https://haseebmajid.dev/posts/2023-09-29-setup-ventoy-on-nixos/]) doesn't work. Instead, the CLI installs ventoy successfully with the following commands as of NixOS 25.05:
 This doesn't clutter your system with ventoy-related files, as it only instantiates a nix-shell with the program available. Note that some users have reported only the GPT table option being able to boot into ventoy correctly (I have expericened this myself) on a UEFI system. It might be worth considering using the GPT table format as per the [linux cli documentation](https://www.ventoy.net/en/doc_start.html#doc_linux_cli)
-    > [!WARNING] This will unrecoverably delete all data on the specified drive. Double check the path before executing this command.
+
+    > [!WARNING]
+    > This will unrecoverably delete all data on the specified drive. Double check the path before executing this command.
 
     ```bash
     nix-shell -p ventoy-full
@@ -61,7 +63,7 @@ This doesn't clutter your system with ventoy-related files, as it only instantia
 
 2. Mount the USB stick to copy the ISOs there
     > [!WARNING]
-    >In this guide `<usbpath>1` points to the first partition on the USB drive. Verify that it does so on your storage medium of choice and adjust the path if needed. Newer NVME SSDs for example use `nvmeXnXp1` (where `X` is a number) to point to the first partition.[^1]
+    > In this guide `<usbpath>1` points to the first partition on the USB drive. Verify that it does so on your storage medium of choice and adjust the path if needed. Newer NVME SSDs for example use `nvmeXnXp1` (where `X` is a number) to point to the first partition.[^1]
     > Mount only the first partition, as it is the location where the ISOs are stored (as of ventoy v1.1.00).
 
     1. Run
