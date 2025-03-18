@@ -62,7 +62,7 @@ This doesn't clutter your system with ventoy-related files, as it only instantia
     ```
 
 2. Mount the USB stick to copy the ISOs there
-    > [!WARNING]
+    > **Warning**
     > In this guide `<usbpath>1` points to the first partition on the USB drive. Verify that it does so on your storage medium of choice and adjust the path if needed. Newer NVME SSDs for example use `nvmeXnXp1` (where `X` is a number) to point to the first partition.[^1]
     > Mount only the first partition, as it is the location where the ISOs are stored (as of ventoy v1.1.00).
 
