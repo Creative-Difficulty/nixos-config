@@ -33,8 +33,9 @@
       devices = [ "nodev" ];
       efiSupport = true;
       useOSProber = true;
+      # Wait indefinitely to choose a boot option
       extraConfig = ''
-        set timeout=50
+        set timeout=-1
       '';
     };
   };
@@ -65,8 +66,16 @@
     # The Nano editor is also installed by default!
     fastfetch
     btop
-    git
   ];
+
+  programs.git = {
+    enable = true;
+    config = {
+      init = {
+        defaultBranch = "main";
+      };
+    };
+  };
 
   services.openssh = {
     enable = true;
