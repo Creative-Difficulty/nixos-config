@@ -1,11 +1,29 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }: {
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
+  
+  sops = {
+    age.keyFile = "/home/alex/keys/alex_sops_1.txt"; # must have no password!
+    # It's also possible to use a ssh key, but only when it has no password:
+    #age.sshKeyPaths = [ "/home/user/path-to-ssh-key" ];
+    defaultSopsFile = ./secrets.json;
+    defaultSopsFormat = "json";
+    secrets.test = {
+      # sopsFile = ./secrets.yml.enc; 
+      # optionally define per-secret files
+      # %r gets replaced with a runtime directory, use %% to specify a '%'
+      # sign. Runtime dir is $XDG_RUNTIME_DIR on linux and $(getconf
+      # DARWIN_USER_TEMP_DIR) on darwin.
+      path = "%r/test.txt"; 
+    };
+  };
 
-{
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "alex";
   home.homeDirectory = "/home/alex";
-
+  
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -47,7 +65,8 @@
       # sort_reverse = true;
     };
   };
-    
+
+  
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

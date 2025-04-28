@@ -1,0 +1,9 @@
+keys:
+  - &admin_alex age147hfqmks5amktl0uw4p9wlm6szrgh8z3zu45hzqxxac0mxq4s94swc7eta
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - age:
+        - *admin_alex
+        pgp:
+          - *admin_alex
