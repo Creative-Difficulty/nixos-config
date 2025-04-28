@@ -32,11 +32,11 @@
     nix-shell '<home-manager>' -A install
     ```
 
-4. Build & use the home-manager config: `home-manager switch --flake .`
+4. Build & activate the home-manager config: `home-manager switch --flake .`
+
 
 ## 4. Tidbits/cheatsheet
-
-- To update the flake's inputs: `nix flake update`
+- To update the flake's inputs: `nix flake update` (or `nix flake lock`?)
 - yazi Keybindings: <https://yazi-rs.github.io/docs/quick-start/#keybindings>
 
 ## 5. Notes pertaining to the current state of this config
