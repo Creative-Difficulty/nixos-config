@@ -24,7 +24,7 @@
         nixosbtw = nixpkgs.lib.nixosSystem {
           inherit system;
           # Give the configuration access to inputs of the flake and outputs
-          specialArgs = { inherit inputs; };
+          # specialArgs = { inherit inputs; };
           modules = [
             disko.nixosModules.disko
 
