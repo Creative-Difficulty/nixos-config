@@ -13,14 +13,9 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = { self, nixpkgs, disko, home-manager, sops-nix, ... }@inputs:
+  outputs = { self, nixpkgs, disko, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -32,7 +27,6 @@
         specialArgs = { inherit inputs; };
         modules = [
           disko.nixosModules.disko
-          #sops-nix.nixosModules.sops
 
           ./hosts/nixosbtw/hardware-configuration.nix
           ./hosts/nixosbtw/configuration.nix
@@ -47,7 +41,7 @@
       modules = [ ./users/alex.nix ];
       # Optionally use extraSpecialArgs
       # to pass through arguments to home.nix
-      extraSpecialArgs = { inherit inputs; };
+      # extraSpecialArgs = { inherit inputs; };
     };
   }; # let ... in ...
 }
