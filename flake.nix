@@ -43,7 +43,7 @@
         # to pass through arguments to home.nix
         # extraSpecialArgs = { inherit inputs; };
       };
-    }  # let ... in ...
+    } # let ... in ...
   );
 }
 

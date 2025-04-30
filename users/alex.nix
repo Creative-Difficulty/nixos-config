@@ -1,8 +1,10 @@
-{ config, pkgs, ... }: {  
+{ config, pkgs, ... }: {
+  imports = [ ../vars.nix ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "alex";
-  home.homeDirectory = "/home/alex";
+  home.username = "${config.vars.mainUser}";
+  home.homeDirectory = "/home/${config.vars.mainUser}";
   
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
