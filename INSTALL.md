@@ -32,11 +32,12 @@
 
 4. Build & activate the home-manager config: `home-manager switch --flake .`
 
-
 ## 4. Tidbits/cheatsheet
+
 - To update the flake's inputs: `nix flake update` (or `nix flake lock`?)
 - yazi Keybindings: <https://yazi-rs.github.io/docs/quick-start/#keybindings>
 - To install home-manager standalone with flakes (like this configuration) follow this official guide: <https://home-manager.dev/manual/24.11/index.xhtml#sec-flakes-standalone>
+
 ## 5. Notes pertaining to the current state of this config
 
 - TODO: configure window swallowing hyprland: <https://www.reddit.com/r/hyprland/comments/xsk2ty/comment/jarfecv/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button>
