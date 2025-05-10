@@ -36,7 +36,7 @@
 
 - To update the flake's inputs: `nix flake update` (or `nix flake lock`?)
 - yazi Keybindings: <https://yazi-rs.github.io/docs/quick-start/#keybindings>
-- To install home-manager standalone with flakes (like this configuration) follow this official guide: <https://home-manager.dev/manual/24.11/index.xhtml#sec-flakes-standalone>
+- To install home-manager standalone with flakes (like in this configuration) follow this official guide: <https://home-manager.dev/manual/24.11/index.xhtml#sec-flakes-standalone>
 
 ## 5. Notes pertaining to the current state of this config
 
