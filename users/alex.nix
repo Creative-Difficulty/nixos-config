@@ -1,11 +1,24 @@
-{ config, pkgs, ... }: {
-  imports = [ ../vars.nix ];
+{ config, pkgs, ragenix, ... }: {
+  imports = [
+    ../vars.nix
+  ];
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "${config.vars.mainUser}";
-  home.homeDirectory = "/home/${config.vars.mainUser}";
-  
+  home.homeDirectory = "${config.vars.homeDirectory}";
+
+  age = {
+    # identityPaths = [ "~/.ssh/id_ed25519" ];
+    secrets.alex_github_ssh_key = {
+      file = ./secrets/alex_github_1.age;
+      # owner = "alex";
+    };
+  };
+
+  # TODO: Fix not being able to use home.homeDirecotry here for some reason
+  home.file = { "${config.vars.homeDirectory}/.config/xyz" = { text = '' ${config.age.secrets.alex_github_ssh_key.path} ''; executable = false; };};
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -23,7 +36,7 @@
     # pkgs.hello
     file
     librewolf
-
+    tree
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
