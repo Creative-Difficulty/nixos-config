@@ -20,7 +20,7 @@
       url = "github:yaxitech/ragenix";
       # optional, not necessary for the module
       inputs.nixpkgs.follows = "nixpkgs";
-      # optionally choose not to download darwin deps (saves some resources on Linux, produces a warning, becuase for some reason ragenix doesn't pass through the darwin module from agenix even though they say they do)
+      # optionally choose not to download darwin deps (saves some resources on Linux, produces a warning, because for some reason ragenix doesn't pass through the darwin module from agenix even though they say they do)
       # inputs.darwin.follows = "";
     };
   };
