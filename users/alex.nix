@@ -9,14 +9,15 @@
   home.homeDirectory = "${config.vars.homeDirectory}";
 
   age = {
-    # identityPaths = [ "~/.ssh/id_ed25519" ];
+    # TODO: Fix path
+    identityPaths = [ "~/keys/alex_secrets_1" ];
     secrets.alex_github_ssh_key = {
       file = ./secrets/alex_github_1.age;
       # owner = "alex";
     };
   };
 
-  # TODO: Fix not being able to use home.homeDirecotry here for some reason
+  # TODO: Fix not being able to use home.homeDirectory here for some reason
   home.file = { "${config.vars.homeDirectory}/.config/xyz" = { text = '' ${config.age.secrets.alex_github_ssh_key.path} ''; executable = false; };};
 
   # This value determines the Home Manager release that your configuration is
