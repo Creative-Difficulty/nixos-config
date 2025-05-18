@@ -12,7 +12,7 @@
     # TODO: Fix path
     identityPaths = [ "~/keys/alex_secrets_1" ];
 
-    # Always 'git add .' before rebuildin when adding a new secret as it won't be copied to the nix store (and won't be found by agenix) otherwise
+    # Always 'git add .' before rebuilding when adding a new secret as it won't be copied to the nix store (and won't be found by agenix) otherwise
     secrets.alex_github_ssh_key = {
       file = ./secrets/alex_github_1.age;
       # owner = "alex";
