@@ -21,6 +21,8 @@
 
   # TODO: Fix not being able to use home.homeDirectory here for some reason
   home.file = {
+    "${config.vars.homeDirectory}/.gitconfig".source = ../dotfiles/.gitconfig;
+
     "${config.vars.homeDirectory}/.config/xyz" = {
       text = ''${config.age.secrets.alex_github_ssh_key.path}'';
       executable = false;
