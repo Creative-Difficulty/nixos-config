@@ -11,6 +11,12 @@
       type = lib.types.path;
     };
 
+    keysDirectory = lib.mkOption {
+      description = "SSH and other keys directory of the main user of the system";
+      default = "${config.vars.homeDirectory}/keys";
+      type = lib.types.path;
+    };
+
     # hostname = lib.mkOption {
     #   description = "The hostname for the system";
     #   default = "default-hostname";
