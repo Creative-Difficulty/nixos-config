@@ -22,10 +22,10 @@
   # TODO: Fix not being able to use home.homeDirectory here for some reason
   home.file = {
     "${config.vars.homeDirectory}/.gitconfig".source = pkgs.replaceVars ../dotfiles/.gitconfig { sshkeypath = "${config.vars.keysDirectory}/alex_github_1"; };
+    "${config.vars.homeDirectory}/.config/hypr/hyprland.conf".source = ../dotfiles/hyprland.conf;
 
     "${config.vars.homeDirectory}/.config/xyz" = {
       text = ''${config.age.secrets.alex_github_ssh_key.path}'';
-      executable = false;
     };
   };
 
