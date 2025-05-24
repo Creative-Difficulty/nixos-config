@@ -3,5 +3,5 @@ email = 80907917+Creative-Difficulty@users.noreply.github.com
 name = Alexander Leschanz
 
 # One way to use a custom ssh key for git without adding it to the daemon
-# [core]
-# sshCommand = ssh -i /home/alex/keys/alex_github_1
+[core]
+sshCommand = ssh -i @sshkeypath@
