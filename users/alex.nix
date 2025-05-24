@@ -10,7 +10,7 @@
 
   age = {
     # TODO: Fix path
-    identityPaths = [ "~/keys/alex_secrets_1" ];
+    identityPaths = [ "${config.vars.keysDirectory}/alex_secrets_1" ];
 
     # Always 'git add .' before rebuilding when adding a new secret as it won't be copied to the nix store (and won't be found by agenix) otherwise
     secrets.alex_github_ssh_key = {
@@ -20,7 +20,12 @@
   };
 
   # TODO: Fix not being able to use home.homeDirectory here for some reason
-  home.file = { "${config.vars.homeDirectory}/.config/xyz" = { text = '' ${config.age.secrets.alex_github_ssh_key.path} ''; executable = false; };};
+  home.file = {
+    "${config.vars.homeDirectory}/.config/xyz" = {
+      text = ''${config.age.secrets.alex_github_ssh_key.path}'';
+      executable = false;
+    };
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
