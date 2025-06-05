@@ -23,7 +23,7 @@
   home.file = {
     "${config.vars.homeDirectory}/.gitconfig".source = pkgs.replaceVars ../dotfiles/.gitconfig { sshkeypath = "${config.vars.keysDirectory}/alex_github_1"; };
     "${config.vars.homeDirectory}/.config/hypr/hyprland.conf".source = ../dotfiles/hyprland.conf;
-    # "${config.vars.homeDirectory}/.config/yazi/yazi.toml".source = ../dotfiles/yazi.toml;
+    "${config.vars.homeDirectory}/.config/yazi/yazi.toml".source = ../dotfiles/yazi.toml;
 
 #    "${config.vars.homeDirectory}/.config/xyz" = {
 #      text = ''${config.age.secrets.alex_github_ssh_key.path}'';
@@ -41,13 +41,14 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = with pkgs; [
-    librewolf
-    tree
+  home.packages = [
+    pkgs.librewolf
+    pkgs.tree
     
-    # yazi dependencies
-    file
-
+    # yazi and dependencies
+    pkgs.yazi
+    pkgs.file
+    pkgs.lazygit
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -62,11 +63,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-
-  programs.yazi = {
-    enable = true;
-    settings = builtins.fromTOML (builtins.readFile ../dotfiles/yazi.toml);
-  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
