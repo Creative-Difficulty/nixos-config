@@ -1,3 +1,4 @@
+{ pkgs }:
 let
   wrapperName = "y";
   bashZshShellWrapper = pkgs.replaceVars ./bashZshShellWrapper { shellwrappername = "${wrapperName}"; };
