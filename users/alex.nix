@@ -1,7 +1,7 @@
 { config, pkgs, ragenix, ... }: {
   imports = [
     ../vars.nix
-    ./programs/yazi.nix
+    ./programs/yazi/yazi.nix
   ];
 
   yazi.enable = true;
