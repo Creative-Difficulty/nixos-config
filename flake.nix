@@ -55,7 +55,6 @@
         modules = [
           ./users/alex.nix
           ragenix.homeManagerModules.default
-#          yazi.packages.${pkgs.system}.default			
         ];
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
