@@ -7,22 +7,24 @@
   config = lib.mkIf config.yazi.enable (
     let
       yaziConfigPath = ../../dotfiles/yazi.toml;
-    in
-    lib.mkMerge [
-      (lib.mkIf config.yazi.bleedingEdge {
-        home.file.".config/yazi/yazi.toml".source = yaziConfigPath;
-        home.packages = [
-          inputs.yazi.packages.${pkgs.system}.default
-          pkgs.file
-        ];
-      })
+    in (
+      lib.mkMerge [
+        (lib.mkIf config.yazi.bleedingEdge {
+          home.file.".config/yazi/yazi.toml".source = yaziConfigPath;
+          home.packages = [
+            inputs.yazi.packages.${pkgs.system}.default
+            pkgs.file
+          ];
+        })
 
-      (lib.mkIf (!config.yazi.bleedingEdge) {
-        programs.yazi = {
-          enable = true;
-          settings = builtins.fromTOML (builtins.readFile yaziConfigPath);
-        };
-      })
-    ]
+        (lib.mkIf (!config.yazi.bleedingEdge) {
+          programs.yazi = {
+            enable = true;
+            settings = builtins.fromTOML (builtins.readFile yaziConfigPath);
+            enableBashIntegration = true;
+          };
+        })
+      ]
+    )
   );
 }
