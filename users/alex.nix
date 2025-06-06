@@ -1,7 +1,11 @@
 { config, pkgs, ragenix, ... }: {
   imports = [
     ../vars.nix
+    ./programs/yazi.nix
   ];
+
+  yazi.enable = true;
+  yazi.bleedingEdge = true;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -21,13 +25,12 @@
 
   # TODO: Fix not being able to use home.homeDirectory here for some reason
   home.file = {
-    "${config.vars.homeDirectory}/.gitconfig".source = pkgs.replaceVars ../dotfiles/.gitconfig { sshkeypath = "${config.vars.keysDirectory}/alex_github_1"; };
-    "${config.vars.homeDirectory}/.config/hypr/hyprland.conf".source = ../dotfiles/hyprland.conf;
-    "${config.vars.homeDirectory}/.config/yazi/yazi.toml".source = ../dotfiles/yazi.toml;
+    ".gitconfig".source = pkgs.replaceVars ../dotfiles/.gitconfig { sshkeypath = "${config.vars.keysDirectory}/alex_github_1"; };
+    ".config/hypr/hyprland.conf".source = ../dotfiles/hyprland.conf;
 
-#    "${config.vars.homeDirectory}/.config/xyz" = {
-#      text = ''${config.age.secrets.alex_github_ssh_key.path}'';
-#    };
+    #    "${config.vars.homeDirectory}/.config/xyz" = {
+    #      text = ''${config.age.secrets.alex_github_ssh_key.path}'';
+    #    };
   };
 
   # This value determines the Home Manager release that your configuration is
@@ -41,14 +44,10 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
-    pkgs.librewolf
-    pkgs.tree
-    
-    # yazi and dependencies
-    pkgs.yazi
-    pkgs.file
-    pkgs.lazygit
+  home.packages = with pkgs; [
+    librewolf
+    tree
+    lazygit
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -63,21 +62,7 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
-  };
+  
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
