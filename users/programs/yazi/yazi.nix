@@ -18,7 +18,7 @@
             pkgs.file
           ];
 
-          home.file.".bashrc".text = ''${bashShellWrapper}''
+          home.file.".bashrc".text = ''${bashShellWrapper}'';
         })
 
         (lib.mkIf (!config.yazi.bleedingEdge) {
