@@ -9,7 +9,7 @@
     let
       yaziConfigPath = ../../../dotfiles/yazi.toml;
       bashShellWrapper = import ./shellWrapper.nix;
-    in {
+    in (
       lib.mkMerge [
         (lib.mkIf config.yazi.bleedingEdge {
           home.file.".config/yazi/yazi.toml".source = yaziConfigPath;
@@ -35,6 +35,6 @@
         })
         
       ]
-    }
+    )
   );
 }
