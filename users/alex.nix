@@ -5,7 +5,7 @@
   ];
 
   yazi.enable = true;
-  yazi.bleedingEdge = true;
+  yazi.bleedingEdge = false;
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
