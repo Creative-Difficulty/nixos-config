@@ -12,7 +12,7 @@
       (lib.mkIf config.yazi.bleedingEdge {
         home.file.".config/yazi/yazi.toml".source = yaziConfigPath;
         home.packages = [
-          # inputs.yazi.packages.${pkgs.system}.default
+          inputs.yazi.packages.${pkgs.system}.default
           pkgs.file
         ];
       })

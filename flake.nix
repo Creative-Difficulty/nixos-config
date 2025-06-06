@@ -56,9 +56,10 @@
           ./users/alex.nix
           ragenix.homeManagerModules.default
         ];
+        
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
-        # extraSpecialArgs = {};
+        extraSpecialArgs = { inherit inputs; };
       };
     } # let ... in ...
   );
