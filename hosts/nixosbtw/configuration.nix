@@ -19,7 +19,7 @@
 #  waybar.enable = true; # TODO make this an option in modules/waybar.nix
 
   terminal_emulator.enable = true; # "kitty" by default
-  clipboard.enable = true;
+#  clipboard.enable = true;
   steam.enable = true;
 
   # TODO set up breeze grub theme

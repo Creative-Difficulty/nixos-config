@@ -3,12 +3,20 @@
     yazi.enable = lib.mkEnableOption "Whether to install yazi";
     yazi.bleedingEdge = lib.mkEnableOption "Whether to to build yazi from the latest GitHub commit";
     yazi.shellWrapper = lib.mkEnableOption "Whether to enable the bash/Zsh wrapper";
+    yazi.shellWrapperName = lib.mkOption {
+      type = lib.types.str;
+      default = "y";
+      description = "Name of the shell wrapper function";
+    };
   };
 
   config = lib.mkIf config.yazi.enable (
     let
       yaziConfigPath = ../../../dotfiles/yazi.toml;
-      bashShellWrapper = import ./shellWrapper.nix;
+      bashZshShellWrapper = import ./shellWrapper.nix {
+        inherit pkgs;
+        wrapperName = config.yazi.shellWrapperName;
+      };
     in (
       lib.mkMerge [
         (lib.mkIf config.yazi.bleedingEdge {
@@ -18,20 +26,16 @@
             pkgs.file
           ];
 
-          home.file.".bashrc".text = ''${bashShellWrapper}'';
+          home.file.".bashrc".text = ''${bashZshShellWrapper}'';
         })
 
         (lib.mkIf (!config.yazi.bleedingEdge) {
           programs.yazi = {
             enable = true;
             settings = builtins.fromTOML (builtins.readFile yaziConfigPath);
-            # enableBashIntegration = true;
+            enableBashIntegration = config.yazi.shellWrapper;
           };
-          home.file.".bashrc".text = ''${bashShellWrapper}'';
-          # home.file.".bashrc".text = ''
-          
-          # '';
-
+          home.file.".bashrc".text = ''${bashZshShellWrapper}'';
         })
         
       ]
