@@ -25,43 +25,53 @@
     };
   };
 
-  outputs = { self, nixpkgs, disko, home-manager, ragenix, yazi, ... }@inputs: (
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {    
-      nixosConfigurations = {
-        nixosbtw = nixpkgs.lib.nixosSystem {
-          inherit system;
-          # Give the configuration access to inputs of the flake and outputs
-          # specialArgs = { inherit inputs; };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      disko,
+      home-manager,
+      ragenix,
+      yazi,
+      ...
+    }@inputs:
+    (
+      let
+        system = "x86_64-linux";
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        nixosConfigurations = {
+          nixosbtw = nixpkgs.lib.nixosSystem {
+            inherit system;
+            # Give the configuration access to inputs of the flake and outputs
+            # specialArgs = { inherit inputs; };
+            modules = [
+              disko.nixosModules.disko
+
+              {
+                environment.systemPackages = [ ragenix.packages.${system}.default ];
+              }
+
+              ./hosts/nixosbtw/hardware-configuration.nix
+              ./hosts/nixosbtw/configuration.nix
+            ];
+          }; # nixosbtw
+        }; # nixosconfigurations
+        # Why is this alex and not config.vars.mainUser?
+        homeConfigurations."alex" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          # Specify your home configuration modules here, for example,
+          # the path to your home.nix.
           modules = [
-            disko.nixosModules.disko
-
-            {
-              environment.systemPackages = [ ragenix.packages.${system}.default ];
-            }
-
-            ./hosts/nixosbtw/hardware-configuration.nix
-            ./hosts/nixosbtw/configuration.nix
+            ./users/alex.nix
+            ragenix.homeManagerModules.default
           ];
-        }; # nixosbtw
-      }; # nixosconfigurations
-      # Why is this alex and not config.vars.mainUser?
-      homeConfigurations."alex" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [
-          ./users/alex.nix
-          ragenix.homeManagerModules.default
-        ];
-        
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-        extraSpecialArgs = { inherit inputs; };
-      };
-    } # let ... in ...
-  );
-}
 
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
+          extraSpecialArgs = { inherit inputs; };
+        };
+      } # let ... in ...
+    );
+}

@@ -1,4 +1,10 @@
-{ lib, config, pkgs, ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   options = {
     grub_theme.enable = lib.mkEnableOption "Whether to enable a custom GRUB theme";
     terminal_emulator.choice = lib.mkOption {
@@ -8,7 +14,7 @@
     };
   };
 
-  config = lib.mkIf config.grub_theme.enable {  
-    boot.loader.grub.theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze"
+  config = lib.mkIf config.grub_theme.enable {
+    boot.loader.grub.theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
   };
 }

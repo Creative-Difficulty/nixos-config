@@ -1,4 +1,10 @@
-{ config, pkgs, ragenix, ... }: {
+{
+  config,
+  pkgs,
+  ragenix,
+  ...
+}:
+{
   imports = [
     ../vars.nix
     ./programs/yazi/yazi.nix
@@ -25,7 +31,9 @@
 
   # TODO: Fix not being able to use home.homeDirectory here for some reason
   home.file = {
-    ".gitconfig".source = pkgs.replaceVars ../dotfiles/.gitconfig { sshkeypath = "${config.vars.keysDirectory}/alex_github_1"; };
+    ".gitconfig".source = pkgs.replaceVars ../dotfiles/.gitconfig {
+      sshkeypath = "${config.vars.keysDirectory}/alex_github_1";
+    };
     ".config/hypr/hyprland.conf".source = ../dotfiles/hyprland.conf;
 
     #    "${config.vars.homeDirectory}/.config/xyz" = {
@@ -62,7 +70,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-  
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
