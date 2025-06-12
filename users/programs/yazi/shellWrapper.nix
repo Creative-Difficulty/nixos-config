@@ -1,6 +1,5 @@
-{ pkgs }:
+{ pkgs, wrapperName }: 
 let
-  wrapperName = "y";
-  bashZshShellWrapper = pkgs.replaceVars ./bashZshShellWrapper { shellwrappername = "${wrapperName}"; };
+  bashZshShellWrapper = builtins.readFile (pkgs.replaceVars ./bashZshShellWrapper { shellwrappername = "${wrapperName}"; });
 in 
   bashZshShellWrapper
