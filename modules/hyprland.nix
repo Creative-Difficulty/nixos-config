@@ -1,4 +1,10 @@
-{ lib, config, pkgs,  ... }: {
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   options = {
     hyprland.enable = lib.mkEnableOption "Whether to enable the hyprland tiling window manager";
     hyprland.wlr_no_hardware_cursors = lib.mkEnableOption "Whether to set the WLR_NO_HARDWARE_CURSORS environment variable. This is useful in case your cursor becomes invisible";

@@ -2,9 +2,10 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, config, ... }: {
+{ pkgs, config, ... }:
+{
   imports = [
-    ./hardware-configuration.nix 
+    ./hardware-configuration.nix
 
     ../../modules/lib.nix
     ../../vars.nix
@@ -14,16 +15,19 @@
 
   vars.mainUser = "alex";
 
-  hyprland.wlr_no_hardware_cursors = true;  
+  hyprland.wlr_no_hardware_cursors = true;
   hyprland.enable = true;
-#  waybar.enable = true; # TODO make this an option in modules/waybar.nix
+  #  waybar.enable = true; # TODO make this an option in modules/waybar.nix
 
   terminal_emulator.enable = true; # "kitty" by default
-#  clipboard.enable = true;
+  #  clipboard.enable = true;
   steam.enable = true;
 
   # TODO set up breeze grub theme
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -65,6 +69,7 @@
     # The Nano editor is also installed by default!
     fastfetch
     btop
+    nixfmt-rfc-style
   ];
 
   programs.git = {
@@ -89,18 +94,22 @@
   services.fail2ban = {
     enable = true;
     # Ignore its own IP and MBPVonAlexander locally
-    ignoreIP = [ "127.0.0.1" "::1" "192.168.0.111" ];
+    ignoreIP = [
+      "127.0.0.1"
+      "::1"
+      "192.168.0.111"
+    ];
   };
 
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
 
-#   users.users.root.openssh.authorizedKeys.keys = [
-#     "CHANGE"
-#   ];
+  #   users.users.root.openssh.authorizedKeys.keys = [
+  #     "CHANGE"
+  #   ];
 
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
-  # and migrated your data accordingly. 
+  # and migrated your data accordingly.
   system.stateVersion = "24.11";
 }
