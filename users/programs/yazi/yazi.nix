@@ -19,7 +19,11 @@ let
       home.file.".bashrc".text = ''${bashZshShellWrapper}'';
     })
     (lib.mkIf config.yazi.enableCommandAlias {
-      home.file.".bashrc".text = ''alias ${config.yazi.commandAlias}="yazi"'';
+      home.file.".bashrc".text = ''
+      ${config.yazi.commandAlias}() {
+        yazi "$@"
+      }
+      '';
     })
   ];
 in
