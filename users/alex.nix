@@ -11,7 +11,7 @@
   ];
 
   yazi.enable = true;
-  yazi.bleedingEdge = false;
+  yazi.bleedingEdge = true;
   yazi.enableCommandAlias = true;
   yazi.commandAlias = "y";
   yazi.enableShellWrapper = true;

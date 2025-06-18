@@ -14,13 +14,12 @@ let
     wrapperName = config.yazi.shellWrapperName;
   };
 
-  # Shared optional config additions
   shellExtras = lib.mkMerge [
     (lib.mkIf config.yazi.enableShellWrapper {
       home.file.".bashrc".text = ''${bashZshShellWrapper}'';
     })
     (lib.mkIf config.yazi.enableCommandAlias {
-      home.file.".bashrc".text = ''alias yazi="${config.yazi.commandAlias}"'';
+      home.file.".bashrc".text = ''alias ${config.yazi.commandAlias}="yazi"'';
     })
   ];
 in
