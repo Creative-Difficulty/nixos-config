@@ -34,7 +34,7 @@
   # TODO: Fix not being able to use home.homeDirectory here for some reason
   home.file = {
     ".gitconfig".source = pkgs.replaceVars ../dotfiles/.gitconfig {
-      sshkeypath = "${config.vars.keysDirectory}/alex_github_1";
+      sshkeypath = "${config.age.secrets.alex_github_ssh_key.path}";
     };
     ".config/hypr/hyprland.conf".source = ../dotfiles/hyprland.conf;
 
