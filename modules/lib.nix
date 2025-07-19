@@ -8,5 +8,6 @@
     ./terminal_emulator.nix
     ./waybar.nix
     ./steam.nix
+    ./grub_theme.nix
   ];
 }

@@ -24,6 +24,8 @@
   steam.enable = true;
 
   # TODO set up breeze grub theme
+  grub_theme.enable = true;
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

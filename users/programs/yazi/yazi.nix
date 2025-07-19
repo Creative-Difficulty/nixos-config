@@ -20,9 +20,9 @@ let
     })
     (lib.mkIf config.yazi.enableCommandAlias {
       home.file.".bashrc".text = ''
-      ${config.yazi.commandAlias}() {
-        yazi "$@"
-      }
+        ${config.yazi.commandAlias}() {
+          yazi "$@"
+        }
       '';
     })
   ];
