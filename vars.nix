@@ -18,6 +18,12 @@
       type = lib.types.path;
     };
 
+    # TODO: Automate detection and change if wrong
+    mainUserXdgRuntimeDir = lib.mkOption {
+      description = "XDG_RUNTIME_DIR directory of the main user of the system";
+      default = "/run/user/12306";
+    };
+
     # hostname = lib.mkOption {
     #   description = "The hostname for the system";
     #   default = "default-hostname";
