@@ -24,6 +24,9 @@
     # TODO: Fix path
     identityPaths = [ "${config.vars.keysDirectory}/alex_secrets_1" ];
 
+    # Fix agenix outputting paths with shell vars in them: https://github.com/ryantm/agenix/issues/300
+    secretsDir = "${builtins.getEnv "XDG_RUNTIME_DIR"}/agenix";
+
     # Always 'git add .' before rebuilding when adding a new secret as it won't be copied to the nix store (and won't be found by agenix) otherwise
     secrets.alex_github_ssh_key = {
       file = ./secrets/alex_github_1.age;
@@ -37,10 +40,11 @@
       sshkeypath = "${config.age.secrets.alex_github_ssh_key.path}";
     };
     ".config/hypr/hyprland.conf".source = ../dotfiles/hyprland.conf;
-
+    ".config/kitty/kitty.conf".source = ../dotfiles/kitty.conf;
     #    "${config.vars.homeDirectory}/.config/xyz" = {
     #      text = ''${config.age.secrets.alex_github_ssh_key.path}'';
     #    };
+#    "agenixapth".text = ''${config.age.secretsDir}'';
   };
 
   # This value determines the Home Manager release that your configuration is
