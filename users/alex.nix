@@ -36,6 +36,10 @@
 
   # TODO: Fix not being able to use home.homeDirectory here for some reason
   home.file = {
+    ".ssh/config".source = pkgs.replaceVars ../dotfiles/.ssh/config {
+     
+      github_key = "/home/alex/keys/alex_github_1";
+    };
     ".gitconfig".source = pkgs.replaceVars ../dotfiles/.gitconfig {
       #sshkeypath = "${config.age.secrets.alex_github_ssh_key.path}";
       sshkeypath = "/home/alex/keys/alex_github_1";
