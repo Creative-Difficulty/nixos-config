@@ -10,6 +10,9 @@
   };
 
   config = lib.mkIf config.grub_theme.enable {
-    boot.loader.grub.theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
+    boot.loader.grub = {
+      theme = "${pkgs.libsForQt5.breeze-grub}/grub/themes/breeze";
+      splashImage = null;
+    };
   };
 }
