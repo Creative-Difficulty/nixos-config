@@ -17,16 +17,10 @@
       type = lib.types.path;
     };
 
-    keysDirectory = lib.mkOption {
+    masterAgeDecryptionKeyPath = lib.mkOption {
       description = "SSH and other keys directory of the main user of the system";
-      default = "${config.vars.homeDirectory}/keys";
+      default = "${config.vars.homeDirectory}/keys/alex_secrets_1";
       type = lib.types.path;
-    };
-
-    # TODO: Automate detection and change if wrong
-    mainUserXdgRuntimeDir = lib.mkOption {
-      description = "XDG_RUNTIME_DIR directory of the main user of the system";
-      default = "/run/user/${toString config.vars.mainUserUid}";
     };
 
     # hostname = lib.mkOption {

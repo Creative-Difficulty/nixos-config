@@ -22,15 +22,17 @@
   home.homeDirectory = "${config.vars.homeDirectory}";
 
   age = {
-    # TODO: Fix path
-    identityPaths = [ "${config.vars.keysDirectory}/alex_secrets_1" ];
+    identityPaths = [ "${config.vars.masterAgeDecryptionKeyPath}" ];
 
-    # Fix agenix outputting paths with shell vars in them: https://github.com/ryantm/agenix/issues/300
-    secretsDir = "${config.vars.mainUserXdgRuntimeDir}/agenix";
+    # !!!!!OLD!!!!!! Changed to this, even though the docs say this is the default (it isn't): https://github.com/ryantm/agenix/issues/300
+    # Changed to this, because under home-manager you either have to manually expand the XDG_RUNTIME_DIR
+    # or set it to /run/user/... or set it to something in the home directory (basically somewhere where the user has write access)
+    secretsDir = "${config.vars.homeDirectory}/agenix";
 
     # Always 'git add .' before rebuilding when adding a new secret as it won't be copied to the nix store (and won't be found by agenix) otherwise
     secrets.alex_github_ssh_key = {
       file = ./secrets/alex_github_1.age;
+      # TODO: Does this make any difference?
 #      owner = "alex";
 #      mode = "770";
     };
@@ -49,7 +51,7 @@
     #    "${config.vars.homeDirectory}/.config/xyz" = {
     #      text = ''${config.age.secrets.alex_github_ssh_key.path}'';
     #    };
-    "agenixapth".text = ''${builtins.getEnv "XDG_RUNTIME_DIR"}/agenix'';
+    # "agenixapth".text = ''${builtins.getEnv "XDG_RUNTIME_DIR"}/agenix'';
   };
 
   # This value determines the Home Manager release that your configuration is
