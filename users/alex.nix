@@ -38,8 +38,8 @@
   home.file = {
     ".ssh/config".source = pkgs.replaceVars ../dotfiles/.ssh/config {
      
-      github_key = "/home/alex/keys/alex_github_1";
-      #sshkeypath = "${config.age.secrets.alex_github_ssh_key.path}";
+      #github_key = "/home/alex/keys/alex_github_1";
+      github_key = "${config.age.secrets.alex_github_ssh_key.path}";
     };
     ".gitconfig".source = ../dotfiles/.gitconfig;
     ".config/hypr/hyprland.conf".source = ../dotfiles/hyprland.conf;
