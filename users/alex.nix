@@ -15,6 +15,7 @@
   yazi.enableCommandAlias = true;
   yazi.commandAlias = "y";
   yazi.enableShellWrapper = true;
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "${config.vars.mainUser}";

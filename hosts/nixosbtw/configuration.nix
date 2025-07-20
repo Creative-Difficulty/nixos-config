@@ -60,7 +60,7 @@
   users.users.${config.vars.mainUser} = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    uid = 12306;
+    uid = config.vars.mainUserUid;
     hashedPassword = "$y$j9T$zyaR2zLGfatM/AxSzS3T51$pyVfeztgg6TcWmL5qIOiT.GYEkco5yFdTY/PBCsGbR2"; # Neu9Sept!
     # packages = with pkgs; [];
   };

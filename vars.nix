@@ -6,6 +6,11 @@
       default = "alex";
     };
 
+    mainUserUid = lib.mkOption {
+      description = "Uid of the main user of the system";
+      default = 12306;
+    };
+
     homeDirectory = lib.mkOption {
       description = "Home directory of the main user of the system";
       default = "/home/${config.vars.mainUser}";
@@ -21,7 +26,7 @@
     # TODO: Automate detection and change if wrong
     mainUserXdgRuntimeDir = lib.mkOption {
       description = "XDG_RUNTIME_DIR directory of the main user of the system";
-      default = "/run/user/12306";
+      default = "/run/user/${toString config.vars.mainUserUid}";
     };
 
     # hostname = lib.mkOption {
