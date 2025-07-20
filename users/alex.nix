@@ -33,15 +33,15 @@
     secrets.alex_github_ssh_key = {
       file = ./secrets/alex_github_1.age;
       # TODO: Does this make any difference?
-#      owner = "alex";
-#      mode = "770";
+      #      owner = "alex";
+      #      mode = "770";
     };
   };
 
   # TODO: Fix not being able to use home.homeDirectory here for some reason
   home.file = {
     ".ssh/config".source = pkgs.replaceVars ../dotfiles/.ssh/config {
-     
+
       #github_key = "/home/alex/keys/alex_github_1";
       github_key = "${config.age.secrets.alex_github_ssh_key.path}";
     };
