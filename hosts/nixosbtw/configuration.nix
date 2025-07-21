@@ -4,10 +4,17 @@
 
 { pkgs, config, ... }:
 {
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+    #    "pipe-operators"
+  ];
+
   imports = [
     ./hardware-configuration.nix
 
-    ../../modules/lib.nix
+    ../../modules/default.nix
+
     ../../vars.nix
 
     ./disko/1ssd_ext4_400gb_kingston.nix
@@ -20,16 +27,9 @@
   #  waybar.enable = true; # TODO make this an option in modules/waybar.nix
 
   terminal_emulator.enable = true; # "kitty" by default
-  #  clipboard.enable = true;
-  steam.enable = true;
 
-  # TODO set up breeze grub theme
+  # TODO set up breeze grub theme background image
   grub_theme.enable = true;
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
 
   boot.loader = {
     efi.canTouchEfiVariables = true;
