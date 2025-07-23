@@ -24,9 +24,9 @@
   age = {
     identityPaths = [ "${config.vars.masterAgeDecryptionKeyPath}" ];
 
-    # !!!!!OLD!!!!!! Changed to this, even though the docs say this is the default (it isn't): https://github.com/ryantm/agenix/issues/300
     # Changed to this, because under home-manager you either have to manually expand the XDG_RUNTIME_DIR
     # or set it to /run/user/... or set it to something in the home directory (basically somewhere where the user has write access)
+    # Tracking issue: https://github.com/ryantm/agenix/issues/300
     secretsDir = "${config.vars.homeDirectory}/agenix";
 
     # Always 'git add .' before rebuilding when adding a new secret as it won't be copied to the nix store (and won't be found by agenix) otherwise
