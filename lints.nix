@@ -9,7 +9,8 @@ let
     );
 
   # Collects all files of a directory as a list of strings of paths
-  files = dir: collect isString (mapAttrsRecursive (path: type: concatStringsSep "/" path) (getDir dir));
+  files =
+    dir: collect isString (mapAttrsRecursive (path: type: concatStringsSep "/" path) (getDir dir));
 
   # Filters out directories that don't end with .nix or are this file, also makes the strings absolute
   validFiles =
@@ -21,21 +22,19 @@ let
       ) (files dir)
     );
 
-  checkResults = map
-    (path: let
+  _ = map (
+    path:
+    let
       mod = import path;
       options = (evalModules { modules = [ mod ]; }).options;
     in
-      if hasAttr "enable" options then null
-      else "Module ${toString path} does not define an 'enable' option."
-    )
-    validFiles;
-
-  warningsList = lib.filter (msg: msg != null) checkResults;
+    if !hasAttr "enable" options then
+      abort "Module ${toString path} does not define an 'enable' option."
+    else
+      null
+  ) (validFiles ./modules);
 
 in
 {
-  config = {
-    warnings = warningsList;
-  };
+  config = { };
 }
