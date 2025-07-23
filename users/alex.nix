@@ -46,6 +46,7 @@
       github_key = "${config.age.secrets.alex_github_ssh_key.path}";
     };
     ".gitconfig".source = ../dotfiles/.gitconfig;
+    # Note: Hyprland has to be enabled from the system module, home-manager just manages the configuration file
     ".config/hypr/hyprland.conf".source = ../dotfiles/hyprland.conf;
     ".config/kitty/kitty.conf".source = ../dotfiles/kitty.conf;
     #    "${config.vars.homeDirectory}/.config/xyz" = {
