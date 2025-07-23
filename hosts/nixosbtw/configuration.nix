@@ -17,6 +17,8 @@
 
     ../../vars.nix
 
+    ../../lints.nix
+
     ./disko/1ssd_ext4_400gb_kingston.nix
   ];
 
