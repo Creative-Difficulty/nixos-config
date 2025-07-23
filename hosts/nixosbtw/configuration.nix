@@ -7,7 +7,7 @@
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
-    #    "pipe-operators"
+    "pipe-operators"
   ];
 
   imports = [
@@ -30,6 +30,8 @@
 
   # TODO set up breeze grub theme background image
   grub_theme.enable = true;
+
+  audio.enable = true;
 
   boot.loader = {
     efi.canTouchEfiVariables = true;
@@ -61,7 +63,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     uid = config.vars.mainUserUid;
-    hashedPassword = "$y$j9T$zyaR2zLGfatM/AxSzS3T51$pyVfeztgg6TcWmL5qIOiT.GYEkco5yFdTY/PBCsGbR2"; # Neu9Sept!
+    hashedPassword = "$y$j9T$zyaR2zLGfatM/AxSzS3T51$pyVfeztgg6TcWmL5qIOiT.GYEkco5yFdTY/PBCsGbR2";
     # packages = with pkgs; [];
   };
 
