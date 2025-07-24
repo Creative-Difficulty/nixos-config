@@ -31,7 +31,7 @@
   terminal_emulator.enable = true; # "kitty" by default
 
   # TODO set up breeze grub theme background image
-  #  grub_theme.enable = true;
+  grub_theme.enable = true;
 
   audio.enable = true;
 
