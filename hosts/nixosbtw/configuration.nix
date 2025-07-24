@@ -34,6 +34,7 @@
   grub_theme.enable = true;
 
   audio.enable = true;
+  sddm.enable = true;
 
   boot.loader = {
     efi.canTouchEfiVariables = true;
