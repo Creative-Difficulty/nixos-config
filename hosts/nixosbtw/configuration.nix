@@ -73,10 +73,11 @@
   users.mutableUsers = false;
 
   environment.systemPackages = with pkgs; [
-    # The Nano editor is also installed by default!
+    # The Nano editor is installed by default!
     fastfetch
     btop
     nixfmt-rfc-style
+    nix-prefetch
   ];
 
   programs.git = {
