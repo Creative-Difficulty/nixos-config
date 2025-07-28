@@ -10,6 +10,7 @@
   };
 
   config = lib.mkIf config.sddm.enable {
-    services.xserver.displayManager.sddm.enable = true;
+    services.displayManager.sddm.enable = true;
+    services.xserver.enable = true;
   };
 }
