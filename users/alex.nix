@@ -10,11 +10,13 @@
     ./programs/yazi/yazi.nix
   ];
 
-  yazi.enable = true;
-  yazi.bleedingEdge = true;
-  yazi.enableCommandAlias = true;
-  yazi.commandAlias = "y";
-  yazi.enableShellWrapper = true;
+  yazi = {
+    enable = true;
+    bleedingEdge = true;
+    enableCommandAlias = true;
+    commandAlias = "y";
+    enableShellWrapper = true;
+  };
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

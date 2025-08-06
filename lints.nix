@@ -26,7 +26,7 @@ let
     path:
     let
       mod = import path;
-      options = (evalModules { modules = [ mod ]; }).options;
+      inherit ((evalModules { modules = [ mod ]; })) options;
     in
     if !hasAttr "enable" options then
       abort "Module ${toString path} does not define an 'enable' option."

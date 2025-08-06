@@ -62,6 +62,8 @@
     keyMap = "de";
   };
 
+  services.xserver.xkb.layout = "de";
+
   users.users.${config.vars.mainUser} = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
