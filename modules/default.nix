@@ -5,7 +5,8 @@ in {
   imports = fileUtils.validFilesWith ./. (
     file:
       lib.hasSuffix ".nix" file
-      && lib.baseNameOf file != "default.nix"
-      && builtins.match ".*sddm-themes/.*" file == null
+      && builtins.baseNameOf file != "default.nix"
+      && !(lib.hasInfix "sddm-themes/" file)
   );
+  traceIf true imports null
 }
