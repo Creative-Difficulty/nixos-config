@@ -13,9 +13,7 @@ let
 
   validFilesWith =
     dir: filterFn:
-      map (file: ./. + "/${file}") (
-        filter filterFn (files dir)
-      );
+      filter (file: filterFn file)  (map (file: dir + "/${file}") (files dir));
 in {
   inherit validFilesWith;
 }
