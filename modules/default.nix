@@ -8,5 +8,5 @@ in {
       && builtins.baseNameOf file != "default.nix"
       && !(lib.hasInfix "sddm-themes/" file)
   );
-  traceIf true imports null
+#  traceIf true imports null
 }
