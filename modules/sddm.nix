@@ -14,7 +14,8 @@ let
   );
 in
 {
-  trace validFiles null
+  builtins.trace validFiles null;
+
   options = {
     sddm.enable = lib.mkEnableOption "Whether to enable the SDDM display manager";
   };

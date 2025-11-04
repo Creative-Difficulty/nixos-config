@@ -18,8 +18,7 @@
     enableShellWrapper = true;
   };
 
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+  # Home Manager needs a bit of information about you and the paths it should manage.
   home.username = "${config.vars.mainUser}";
   home.homeDirectory = "${config.vars.homeDirectory}";
 
