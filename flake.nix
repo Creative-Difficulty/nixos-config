@@ -58,7 +58,7 @@
             ];
           }; # nixosbtw
         }; # nixosconfigurations
-        # Why is this alex and not config.vars.mainUser?
+        # Why is this alex and can't be config.vars.mainUser?
         homeConfigurations."alex" = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           # Specify your home configuration modules here, for example,
