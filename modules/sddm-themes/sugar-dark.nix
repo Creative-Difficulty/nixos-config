@@ -8,8 +8,8 @@ let
   version = "1.2";
 in
 stdenv.mkDerivation {
-  pname = "sddm-sugar-dark-theme";
   inherit version;
+  pname = "sddm-theme-sugar-dark";
   dontBuild = true;
   installPhase = ''
     mkdir -p $out/share/sddm/themes

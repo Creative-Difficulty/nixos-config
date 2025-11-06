@@ -20,11 +20,9 @@ in
 
   config = lib.mkIf config.sddm.enable {
     services.displayManager.sddm.enable = true;
+    environment.systemPackages = [ pkgs.callPackage ./sddm-themes/sugar-dark.nix { }];
+    services.displayManager.sddm.extraPackages = with pkgs; [ libsForQt5.qt5.qtgraphicaleffects ];
     services.displayManager.sddm.theme = "sugar-dark";
     services.xserver.enable = true;
-#    services.displayManager.sddm.extraPackages = with pkgs; [ libsForQt5.qt5.qtgraphicaleffects ];
-#    environment.systemPackages = map (file: pkgs.callPackage file { }) validFiles;
-#environment.systemPackages = map (file: import file { inherit (pkgs) lib stdenv fetchFromGitHub; }) validFiles;
-#environment.systemPackages = map (path: pkgs.callPackage path { }) packagePaths;
   };
 }
