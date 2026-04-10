@@ -75,7 +75,7 @@
   users.mutableUsers = false;
 
   environment.systemPackages = with pkgs; [
-    # The Nano editor is installed by default!
+    # The Nano editor is installed by default
     fastfetch
     btop
     nixfmt-rfc-style
@@ -98,15 +98,14 @@
       PermitRootLogin = "no";
       KbdInteractiveAuthentication = false;
     };
-    # ports = [ 22 ];
   };
 
   services.fail2ban = {
     enable = true;
-    # Ignore its own IP and MBPVonAlexander locally
     ignoreIP = [
       "127.0.0.1"
       "::1"
+      # Ignore MBPVonAlex
       "192.168.0.111"
     ];
   };
