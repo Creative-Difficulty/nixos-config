@@ -19,7 +19,7 @@
 
     ../../lints.nix
 
-    ./disko/1ssd_ext4_400gb_kingston.nix
+    ./disko/1ssd_ext4_400gb.nix
   ];
 
   vars.mainUser = "alex";
