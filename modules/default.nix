@@ -8,15 +8,13 @@ let
     let
       type = entries.${name};
       isImportable = type == "regular" && lib.hasSuffix ".nix" name && name != "default.nix";
+      traceMessage =
+        if isImportable then
+          "✅ Importing module ${name}"
+        else
+          "❌ Skipping module ${name} (type=${type})";
       tracedImportable =
-        builtins.trace
-          (
-            if isImportable then
-              "✅ Importing module ${name}"
-            else
-              "❌ Skipping module ${name} (type=${type})"
-          )
-          isImportable;
+        builtins.trace traceMessage isImportable;
     in
     if tracedImportable then [ ./. + "/${name}" ] else [ ]
   ) fileNames;
