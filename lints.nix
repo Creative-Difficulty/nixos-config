@@ -12,7 +12,7 @@ let
     in
     self;
 
-  hasEnableOption =
+  hasAnyEnableOption =
     options:
     builtins.any (path: lib.last path == "enable") (lib.attrNamesRecursive options);
 in
@@ -26,7 +26,7 @@ in
       }).options;
     in
     {
-      assertion = hasEnableOption moduleOptions;
+      assertion = hasAnyEnableOption moduleOptions;
       message = "Module ${toString path} does not define any '*.enable' option.";
     }
   ) moduleFiles;
