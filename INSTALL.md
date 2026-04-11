@@ -24,13 +24,8 @@
 
 1. Copy configuration over to the target machine: `git clone https://github.com/Creative-Difficulty/nixos-config.git`
 2. Run `sudo nixos-rebuild switch --flake .#nixosbtw` to make sure the config from the Git repo gets applied over the one used by nixos-anywhere.
-3. Install home-manager standalone:
-
-    ```bash
-    nix-shell '<home-manager>' -A install
-    ```
-
-4. Build & activate the home-manager config: `home-manager switch --flake .`
+3. To install home manager run `nix run home-manager/release-24.11 -- switch --flake .`, for some reason the command becomes available permanentely after this (TODO investigate)
+4. To build & activate the home-manager config later: `home-manager switch --flake .`
 
 ## 4. Tidbits/cheatsheet
 
