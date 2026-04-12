@@ -16,7 +16,7 @@ let
       tracedImportable =
         builtins.trace traceMessage isImportable;
     in
-    if tracedImportable then [ ./. + "/${name}" ] else [ ]
+    if tracedImportable then [ (./. + "/${name}") ] else [ ]
   ) fileNames;
 in
 {
