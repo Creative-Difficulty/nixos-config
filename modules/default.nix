@@ -1,22 +1,24 @@
 { lib, ... }:
 let
-  fileUtils = import ../utils.nix { inherit lib; };
+  entries = builtins.readDir ./.;
+  fileNames = lib.attrNames entries;
 
-  imports' = fileUtils.validFilesWith ./. (
-    file:
-      let
-        rel = lib.removePrefix (toString ./. + "/") (toString file);
-        _ = builtins.trace "🔍 Found file: ${rel}" null;
-        ok =
-          lib.hasSuffix ".nix" rel
-          && builtins.baseNameOf rel != "default.nix"
-          && !(lib.hasPrefix "sddm-themes/" rel);
-        __ = if ok
-          then builtins.trace "✅ Importing ${rel}" null
-          else builtins.trace "❌ Skipping ${rel}" null;
-      in
-        ok
-  );
-in {
-  imports = imports';
+  moduleImports = builtins.concatMap (
+    name:
+    let
+      type = entries.${name};
+      isImportable = type == "regular" && lib.hasSuffix ".nix" name && name != "default.nix";
+      traceMessage =
+        if isImportable then
+          "✅ Importing module ${name}"
+        else
+          "❌ Skipping module ${name} (type=${type})";
+      tracedImportable =
+        builtins.trace traceMessage isImportable;
+    in
+    if tracedImportable then [ ./. + "/${name}" ] else [ ]
+  ) fileNames;
+in
+{
+  imports = moduleImports;
 }

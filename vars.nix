@@ -4,11 +4,13 @@
     mainUser = lib.mkOption {
       description = "Name of the main user of the system";
       default = "alex";
+      type = lib.types.str;
     };
 
     mainUserUid = lib.mkOption {
       description = "Uid of the main user of the system";
       default = 12306;
+      type = lib.types.int;
     };
 
     homeDirectory = lib.mkOption {
@@ -19,7 +21,7 @@
 
     masterAgeDecryptionKeyPath = lib.mkOption {
       description = "SSH and other keys directory of the main user of the system";
-      default = "${config.vars.homeDirectory}/keys/alex_secrets_1";
+      default = "${config.vars.homeDirectory}/keys/${config.vars.mainUser}_secrets_1";
       type = lib.types.path;
     };
 
