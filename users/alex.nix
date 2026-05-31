@@ -73,6 +73,12 @@
     tree
     lazygit
 
+    hyprsunset
+
+    libinput
+    evtest
+    libratbag
+
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -86,8 +92,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-
-  services.hyprsunset.enable = true;
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
