@@ -17,7 +17,7 @@
 
     ../../vars.nix
 
-    ../../lints.nix
+    #    ../../lints.nix
 
     ./disko/1ssd_ext4_400gb.nix
   ];
@@ -78,8 +78,10 @@
     # The Nano editor is installed by default
     fastfetch
     btop
+
     nixfmt-rfc-style
     nix-prefetch
+    ckb-next
   ];
 
   programs.git = {

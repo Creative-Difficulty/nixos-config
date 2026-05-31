@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -33,6 +35,7 @@
       home-manager,
       ragenix,
       yazi,
+      nix-minecraft,
       ...
     }@inputs:
     (
@@ -48,9 +51,11 @@
             # specialArgs = { inherit inputs; };
             modules = [
               disko.nixosModules.disko
+              nix-minecraft.nixosModules.minecraft-servers
 
               {
                 environment.systemPackages = [ ragenix.packages.${system}.default ];
+                nixpkgs.overlays = [ nix-minecraft.overlay ];
               }
 
               ./hosts/nixosbtw/hardware-configuration.nix

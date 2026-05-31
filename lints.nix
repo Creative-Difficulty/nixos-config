@@ -13,17 +13,17 @@ let
     self;
 
   hasAnyEnableOption =
-    options:
-    builtins.any (path: lib.last path == "enable") (lib.attrNamesRecursive options);
+    options: builtins.any (path: lib.last path == "enable") (lib.attrNamesRecursive options);
 in
 {
   config.assertions = map (
     path:
     let
-      moduleOptions = (lib.evalModules {
-        modules = [ (import path) ];
-        specialArgs.pkgs = dummyPkgs;
-      }).options;
+      moduleOptions =
+        (lib.evalModules {
+          modules = [ (import path) ];
+          specialArgs.pkgs = dummyPkgs;
+        }).options;
     in
     {
       assertion = hasAnyEnableOption moduleOptions;
