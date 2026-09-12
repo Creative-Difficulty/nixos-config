@@ -55,6 +55,7 @@
     #      text = ''${config.age.secrets.alex_github_ssh_key.path}'';
     #    };
     # "agenixapth".text = ''${builtins.getEnv "XDG_RUNTIME_DIR"}/agenix'';
+    ".bashrc".text = builtins.readFile ../dotfiles/.bashrc;
   };
 
   # This value determines the Home Manager release that your configuration is
@@ -69,6 +70,7 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    neovim
     librewolf
     tree
     lazygit
@@ -115,7 +117,7 @@
   #  /etc/profiles/per-user/alex/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+      EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.
