@@ -56,6 +56,11 @@
     #    };
     # "agenixapth".text = ''${builtins.getEnv "XDG_RUNTIME_DIR"}/agenix'';
     ".bashrc".text = builtins.readFile ../dotfiles/.bashrc;
+
+    ".config/nvim" = {
+      source = ../dotfiles/nvim;
+      recursive = true;
+    };
   };
 
   # This value determines the Home Manager release that your configuration is
