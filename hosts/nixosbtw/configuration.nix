@@ -28,8 +28,6 @@
   hyprland.enable = true;
   #  waybar.enable = true; # TODO make this an option in modules/waybar.nix
 
-  terminal_emulator.enable = true; # "kitty" by default
-
   # TODO set up breeze grub theme background image
   grub_theme.enable = true;
 
@@ -79,9 +77,10 @@
     fastfetch
     btop
 
-    nixfmt-rfc-style
+    nixfmt
     nix-prefetch
     ckb-next
+    kitty
   ];
 
   programs.git = {

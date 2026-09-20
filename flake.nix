@@ -18,10 +18,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ragenix = {
       url = "github:yaxitech/ragenix";
       # optional, not necessary for the module
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.rust-overlay.follows = "rust-overlay";
       # optionally choose not to download darwin deps (saves some resources on Linux, produces a warning, because for some reason ragenix doesn't pass through the darwin module from agenix even though they say they do)
       # inputs.darwin.follows = "";
     };

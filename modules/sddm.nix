@@ -20,7 +20,7 @@ in
   config = lib.mkIf config.sddm.enable {
     services.displayManager.sddm.enable = true;
     environment.systemPackages = [ themeWrapper.themes.${config.sddm.theme} ];
-    services.displayManager.sddm.extraPackages = with pkgs; [ libsForQt5.qt5.qtgraphicaleffects ];
+    services.displayManager.sddm.extraPackages = with pkgs; [ kdePackages.qt5compat ];
     services.displayManager.sddm.theme = config.sddm.theme;
     services.xserver.enable = true;
   };
