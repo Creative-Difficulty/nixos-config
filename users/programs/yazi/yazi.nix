@@ -7,8 +7,6 @@
 }:
 
 let
-  yaziConfigPath = ../../../dotfiles/yazi.toml;
-
   bashZshShellWrapper = import ./shellWrapper.nix {
     inherit pkgs;
     wrapperName = config.yazi.shellWrapperName;
@@ -45,14 +43,21 @@ in
       default = "y";
       description = "Alias for the `yazi` command (without the shell wrapper)";
     };
+
+    yazi.configFilePath = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = null;
+      example = ../../../dotfiles/yazi.toml;
+      description = "Path to a yazi.toml. If null, no config is deployed and yazi's defaults apply.";
+    };
   };
 
   config = lib.mkIf config.yazi.enable (
     lib.mkMerge [
       (lib.mkIf config.yazi.bleedingEdge {
-        home.file.".config/yazi/yazi.toml".source = yaziConfigPath;
         home.packages = [
           inputs.yazi.packages.${pkgs.system}.default
+          # TODO: Why is this dependency required?
           pkgs.file
         ];
       })
@@ -60,8 +65,10 @@ in
       (lib.mkIf (!config.yazi.bleedingEdge) {
         programs.yazi = {
           enable = true;
-          settings = builtins.fromTOML (builtins.readFile yaziConfigPath);
           enableBashIntegration = config.yazi.enableShellWrapper;
+          settings = lib.mkIf (config.yazi.configFilePath != null) (
+            builtins.fromTOML (builtins.readFile config.yazi.configFilePath)
+          );
         };
       })
 
