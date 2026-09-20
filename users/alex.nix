@@ -48,17 +48,17 @@
     ".ssh/config".source = pkgs.replaceVars ../dotfiles/.ssh/config {
       github_key = "${config.age.secrets.alex_github_ssh_key.path}";
     };
+
     ".gitconfig".source = ../dotfiles/.gitconfig;
+
+
     # Note: Hyprland has to be enabled from the system module, home-manager just manages the configuration file
-    ".config/hypr/hyprland.conf".source = ../dotfiles/.config/hypr/hyprland.conf;
-    ".config/hypr/hyprsunset.conf".source = ../dotfiles/.config/hypr/hyprsunset.conf;
-    ".config/kitty/kitty.conf".source = ../dotfiles/.config/kitty/kitty.conf;
-    ".config/yazi/yazi.toml".source = ../dotfiles/.config/yazi/yazi.toml;
+
     # Because this file will be appened to, we can't just set the souce path, as that could overwrite it due to eval order
     ".bashrc".text = builtins.readFile ../dotfiles/.bashrc;
 
-    ".config/nvim" = {
-      source = ../dotfiles/.config/nvim;
+    ".config/" = {
+      source = ../dotfiles/.config;
       recursive = true;
     };
   };
