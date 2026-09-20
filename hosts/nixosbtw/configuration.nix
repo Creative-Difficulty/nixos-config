@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 {
   nix.settings.experimental-features = [
     "nix-command"
@@ -30,6 +30,16 @@
 
   # TODO set up breeze grub theme background image
   grub_theme.enable = true;
+
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        user = "greeter";
+        command = lib.getExe' pkgs.tuigreet "tuigreet --remember --time --issue"; # you may pass `--config` here
+      };
+    };
+  };
 
   audio.enable = true;
 
