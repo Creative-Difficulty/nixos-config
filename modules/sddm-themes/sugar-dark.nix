@@ -21,4 +21,9 @@ stdenv.mkDerivation {
     rev = "v${version}";
     sha256 = "0gx0am7vq1ywaw2rm1p015x90b75ccqxnb1sz3wy8yjl27v82yhb";
   };
+
+  postPatch = ''
+    find . -name '*.qml' -exec \
+    sed -i -E 's|import QtGraphicalEffects [0-9.]+|import Qt5Compat.GraphicalEffects|' {} +
+  '';
 }
