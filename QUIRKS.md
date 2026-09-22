@@ -1,0 +1,1 @@
+- Hyprland keybinds are not case-sensitive: ... + "J" is the same as ... + "j"
