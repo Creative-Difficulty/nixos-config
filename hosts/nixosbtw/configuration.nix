@@ -93,7 +93,6 @@
     nix-prefetch
     ckb-next
     kitty
-    ghostty
   ];
 
   programs.git = {
