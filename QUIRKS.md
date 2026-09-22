@@ -1,1 +1,2 @@
 - Hyprland keybinds are not case-sensitive: ... + "J" is the same as ... + "j"
+- arp -a on Linux is ip neigh, but it displays no other devices on the network
