@@ -79,10 +79,15 @@
 
   users.users.${config.vars.mainUser} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "wireshark" ]; # Enable ‘sudo’ for the user.
     uid = config.vars.mainUserUid;
     hashedPassword = "$y$j9T$zyaR2zLGfatM/AxSzS3T51$pyVfeztgg6TcWmL5qIOiT.GYEkco5yFdTY/PBCsGbR2";
     # packages = with pkgs; [];
+  };
+
+  programs.wireshark = {
+    enable = true;
+    package = pkgs.wireshark; # default is wireshark-cli (no GUI)
   };
 
   users.mutableUsers = false;
