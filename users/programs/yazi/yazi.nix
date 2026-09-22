@@ -56,7 +56,7 @@ in
     lib.mkMerge [
       (lib.mkIf config.yazi.bleedingEdge {
         home.packages = [
-          inputs.yazi.packages.${pkgs.system}.default
+          inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default
           # TODO: Why is this dependency required?
           pkgs.file
         ];
