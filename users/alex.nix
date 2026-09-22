@@ -66,7 +66,6 @@
 
     ".gitconfig".source = ../dotfiles/.gitconfig;
 
-
     # Note: Hyprland has to be enabled from the system module, home-manager just manages the configuration file
 
     # Because this file will be appened to, we can't just set the souce path, as that could overwrite it due to eval order
@@ -100,11 +99,11 @@
     evtest
     libratbag
 
-(pkgs.prismlauncher.override {
-    jdks = [
-      javaPackages.compiler.openjdk25   # for newer Minecraft versions
-    ];
-  })
+    (pkgs.prismlauncher.override {
+      jdks = [
+        javaPackages.compiler.openjdk25 # for newer Minecraft versions
+      ];
+    })
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
@@ -118,8 +117,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-
-
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
@@ -138,7 +135,7 @@
   #  /etc/profiles/per-user/alex/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-      EDITOR = "nvim";
+    EDITOR = "nvim";
   };
 
   # Let Home Manager install and manage itself.

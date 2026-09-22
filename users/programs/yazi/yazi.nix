@@ -14,7 +14,7 @@ let
 
   shellExtras = lib.mkMerge [
     (lib.mkIf config.yazi.enableShellWrapper {
-      home.file.".bashrc".text = ''${bashZshShellWrapper}'';
+      home.file.".bashrc".text = "${bashZshShellWrapper}";
     })
     (lib.mkIf config.yazi.enableCommandAlias {
       home.file.".bashrc".text = ''
