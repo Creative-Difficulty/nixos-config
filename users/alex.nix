@@ -22,6 +22,21 @@
     enable = true;
   };
 
+  programs.ghostty = {
+    enable = true;
+    package = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+
+    # Enable for whichever shell you plan to use!
+    enableBashIntegration = true;
+    # TODO: Make the switch to zsh automatically when its darwin
+    # TODO: Make a using_shell or something var to globally expose the used shell by hm or nixos-config (which?)
+    #enableFishIntegration = true;
+    #enableZshIntegration = true;
+
+    # Ghostty daemon (?) for faster window launches
+    systemd.enable = true;
+  };
+
   # Home Manager needs a bit of information about you and the paths it should manage.
   home.username = "${config.vars.mainUser}";
   home.homeDirectory = "${config.vars.homeDirectory}";
