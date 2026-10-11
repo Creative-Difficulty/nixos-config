@@ -36,6 +36,8 @@
   # TODO set up breeze grub theme background image
   grub_theme.enable = true;
 
+  steam.enable = true;
+
   services.greetd = {
     enable = true;
     useTextGreeter = true;
@@ -79,11 +81,13 @@
 
   users.users.${config.vars.mainUser} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "wireshark" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "wireshark" "i2c" ]; # wheel: Enable ‘sudo’ for the user, wireshark: enable wireshark perms, i2c: enable i2c for monitor brightness control
     uid = config.vars.mainUserUid;
     hashedPassword = "$y$j9T$zyaR2zLGfatM/AxSzS3T51$pyVfeztgg6TcWmL5qIOiT.GYEkco5yFdTY/PBCsGbR2";
     # packages = with pkgs; [];
   };
+
+  hardware.i2c.enable = true;
 
   programs.wireshark = {
     enable = true;
@@ -101,6 +105,8 @@
     nix-prefetch
     ckb-next
     kitty
+
+    ddcutil
   ];
 
   programs.git = {
