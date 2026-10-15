@@ -41,6 +41,8 @@
   home.username = "${config.vars.mainUser}";
   home.homeDirectory = "${config.vars.homeDirectory}";
 
+  programs.eww.enable = true;
+
   age = {
     identityPaths = [ "${config.vars.masterAgeDecryptionKeyPath}" ];
 
