@@ -13,15 +13,15 @@
        :halign "start"
        :space-evenly true
        :spacing 10
-    (button :onclick "wmctrl -s 0" 1)
-    (button :onclick "wmctrl -s 1" 2)
-    (button :onclick "wmctrl -s 2" 3)
-    (button :onclick "wmctrl -s 3" 4)
-    (button :onclick "wmctrl -s 4" 5)
-    (button :onclick "wmctrl -s 5" 6)
-    (button :onclick "wmctrl -s 6" 7)
-    (button :onclick "wmctrl -s 7" 8)
-    (button :onclick "wmctrl -s 8" 9)))
+    (button :onclick "hyprctl dispatch \"hl.dsp.focus({ workspace = '1' })\"" 1)
+    (button :onclick "hyprctl dispatch \"hl.dsp.focus({ workspace = '2' })\"" 2)
+    (button :onclick "hyprctl dispatch \"hl.dsp.focus({ workspace = '3' })\"" 3)
+    (button :onclick "hyprctl dispatch \"hl.dsp.focus({ workspace = '4' })\"" 4)
+    (button :onclick "hyprctl dispatch \"hl.dsp.focus({ workspace = '5' })\"" 5)
+    (button :onclick "hyprctl dispatch \"hl.dsp.focus({ workspace = '6' })\"" 6)
+    (button :onclick "hyprctl dispatch \"hl.dsp.focus({ workspace = '7' })\"" 7)
+    (button :onclick "hyprctl dispatch \"hl.dsp.focus({ workspace = '8' })\"" 8)
+    (button :onclick "hyprctl dispatch \"hl.dsp.focus({ workspace = '9' })\"" 9)))
 
 
 (defpoll time :interval "1s"
@@ -29,7 +29,7 @@
 
 (defwindow bar
   :monitor 0
-  :windowtype "dock"
+  :exclusive true
   :geometry (geometry :x "0%"
                       :y "0%"
                       :width "100%"
