@@ -21,17 +21,11 @@
     hardware.i2c.enable = true;
     users.users.${config.vars.mainUser}.extraGroups = [ "i2c" ];
 
-    # nouveau's DP AUX bus isn't auto-probed, so attach ddcci to the bus named after the connector
-    systemd.services.ddcci-attach = {
-      wantedBy = [ "multi-user.target" ];
-      after = [ "systemd-modules-load.service" ];
-      serviceConfig.Type = "oneshot";
-      script = ''
-        for b in /sys/bus/i2c/devices/i2c-*; do
-          [ "$(cat "$b/name")" = "${config.brightness.connector}" ] && echo ddcci 0x37 > "$b/new_device"
-        done
-      '';
-    };
+    # nouveau's DP AUX bus isn't auto-probed, so attach ddcci to the bus named after the connector.
+    # This is a udev rule instead of a boot service, because the bus only appears once nouveau has loaded
+    services.udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="i2c", ATTR{name}=="${config.brightness.connector}", RUN+="${pkgs.bash}/bin/sh -c 'echo ddcci 0x37 > /sys%p/new_device'"
+    '';
 
     environment.systemPackages = with pkgs; [
       brightnessctl
