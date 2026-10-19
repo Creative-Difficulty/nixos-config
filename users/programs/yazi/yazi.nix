@@ -47,7 +47,7 @@ in
     yazi.configFilePath = lib.mkOption {
       type = lib.types.nullOr lib.types.path;
       default = null;
-      example = ../../../dotfiles/yazi.toml;
+      example = ../../../dotfiles/.config/yazi/yazi.toml;
       description = "Path to a yazi.toml. If null, no config is deployed and yazi's defaults apply.";
     };
   };
