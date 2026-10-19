@@ -95,6 +95,7 @@
     neovim
     tree
     lazygit
+    jq # used by the Claude Code status line script
 
     hyprsunset
 
