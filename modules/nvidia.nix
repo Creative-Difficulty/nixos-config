@@ -7,6 +7,7 @@
   config = lib.mkIf config.nvidia.enable {
     unfree.allowed = [
       "nvidia-x11"
+      "nvidia-kernel-modules"
       "nvidia-settings"
       "nvidia-persistenced"
     ];
