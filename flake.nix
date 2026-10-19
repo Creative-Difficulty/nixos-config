@@ -23,6 +23,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    claude-code.url = "github:sadjow/claude-code-nix";
+
     ragenix = {
       url = "github:yaxitech/ragenix";
       # optional, not necessary for the module
