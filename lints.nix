@@ -13,7 +13,7 @@ let
     self;
 
   hasAnyEnableOption =
-    options: builtins.any (path: lib.last path == "enable") (lib.attrNamesRecursive options);
+    options: builtins.any (opt: lib.last opt.loc == "enable") (lib.collect lib.isOption options);
 in
 {
   config.assertions = map (
@@ -21,7 +21,11 @@ in
     let
       moduleOptions =
         (lib.evalModules {
-          modules = [ (import path) ];
+          # Only the module's own option declarations matter, so don't complain about NixOS options it sets
+          modules = [
+            (import path)
+            { _module.check = false; }
+          ];
           specialArgs.pkgs = dummyPkgs;
         }).options;
     in
