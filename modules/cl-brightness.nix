@@ -18,6 +18,9 @@
     boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
     boot.kernelModules = [ "ddcci_backlight" ];
 
+    hardware.i2c.enable = true;
+    users.users.${config.vars.mainUser}.extraGroups = [ "i2c" ];
+
     # nouveau's DP AUX bus isn't auto-probed, so attach ddcci to the bus named after the connector
     systemd.services.ddcci-attach = {
       wantedBy = [ "multi-user.target" ];
@@ -30,6 +33,9 @@
       '';
     };
 
-    environment.systemPackages = [ pkgs.brightnessctl ];
+    environment.systemPackages = with pkgs; [
+      brightnessctl
+      ddcutil
+    ];
   };
 }
