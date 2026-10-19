@@ -39,6 +39,8 @@
 
   steam.enable = true;
 
+  brightness.enable = true;
+
   services.greetd = {
     enable = true;
     useTextGreeter = true;
