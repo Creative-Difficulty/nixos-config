@@ -12,3 +12,24 @@
   color: #D35D6E;
 }
 
+// The scale needs explicit styling, since "all: unset" removes GTK's default look
+.brightness trough {
+  min-width: 100px;
+  min-height: 6px;
+  border-radius: 3px;
+  background-color: #555555;
+}
+
+.brightness highlight {
+  border-radius: 3px;
+  background-color: #b0b4bc;
+}
+
+.brightness slider {
+  min-width: 10px;
+  min-height: 10px;
+  margin: -2px 0;
+  border-radius: 50%;
+  background-color: #D35D6E;
+}
+
