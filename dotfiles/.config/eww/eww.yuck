@@ -3,7 +3,26 @@
              :orientation "h"
     (workspaces)
     (box)
-    (label :halign "end" :text time)))
+    (box :halign "end"
+         :spacing 15
+      (brightness)
+      (label :text time))))
+
+
+(defwidget brightness []
+  ; max is exclusive in eww, so 101 to reach 100%. timeout throttles the slow DDC/CI writes while dragging
+  (scale :class "brightness"
+         :min 0
+         :max 101
+         :round-digits 0
+         :timeout "300ms"
+         :value brightness
+         :onchange "brightnessctl -c backlight set {}%"))
+
+
+; The monitor can also be changed with its own buttons, so poll for the current value
+(defpoll brightness :interval "5s" :initial "0"
+  "info=$(brightnessctl -c backlight -m info) && echo \"$info\" | cut -d, -f4 | tr -d % || echo 0")
 
 
 (defwidget workspaces []
