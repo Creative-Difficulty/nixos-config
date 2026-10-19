@@ -16,7 +16,7 @@
     bleedingEdge = true;
     enableCommandAlias = true;
     enableShellWrapper = true;
-    configFilePath = ../../../dotfiles/yazi.toml;
+    # yazi.toml is deployed through the recursive .config link below
   };
 
   programs.librewolf = {
