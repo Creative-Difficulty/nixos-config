@@ -5,13 +5,11 @@
   };
 
   config = lib.mkIf config.nvidia.enable {
-    nixpkgs.config.allowUnfreePredicate =
-      pkg:
-      builtins.elem (lib.getName pkg) [
-        "nvidia-x11"
-        "nvidia-settings"
-        "nvidia-persistenced"
-      ];
+    unfree.allowed = [
+      "nvidia-x11"
+      "nvidia-settings"
+      "nvidia-persistenced"
+    ];
 
     hardware.graphics.enable = true;
 

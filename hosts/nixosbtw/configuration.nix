@@ -21,6 +21,7 @@
     ../../modules/default.nix
 
     ../../vars.nix
+    ../../unfree.nix
 
     #    ../../lints.nix
 
