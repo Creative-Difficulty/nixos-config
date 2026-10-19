@@ -23,7 +23,7 @@
     ../../vars.nix
     ../../unfree.nix
 
-    #    ../../lints.nix
+    ../../lints.nix
 
     ./disko/1ssd_ext4_400gb.nix
   ];
