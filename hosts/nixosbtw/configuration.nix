@@ -30,7 +30,6 @@
 
   vars.mainUser = "alex";
 
-  hyprland.wlr_no_hardware_cursors = true;
   hyprland.enable = true;
   #  waybar.enable = true; # TODO make this an option in modules/waybar.nix
 
