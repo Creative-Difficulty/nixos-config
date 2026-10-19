@@ -24,7 +24,7 @@
       audio.enable = true;
     };
 
-    hardware.pulseaudio = lib.mkIf (config.audio.server == "pulseaudio") {
+    services.pulseaudio = lib.mkIf (config.audio.server == "pulseaudio") {
       enable = true;
     };
   };
