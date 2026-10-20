@@ -32,9 +32,13 @@
        :space-evenly true
        :spacing 10
     (for ws in "[1, 2, 3, 4, 5, 6, 7, 8, 9]"
-      (button :onclick "hyprctl dispatch \"hl.dsp.focus({ workspace = '${ws}' })\""
+      (button :class {active_ws == ws ? "active" : ""}
+              :onclick "hyprctl dispatch \"hl.dsp.focus({ workspace = '${ws}' })\""
         (label :text ws)))))
 
+
+(deflisten active_ws :initial "1"
+  "bash ~/.config/eww/scripts/active-workspace.sh")
 
 ; Only minutes are shown, so polling every second is wasted work
 (defpoll time :interval "10s"
