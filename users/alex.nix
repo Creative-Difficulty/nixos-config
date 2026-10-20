@@ -44,14 +44,6 @@
 
   programs.eww.enable = true;
 
-  programs.tmux = {
-    enable = true;
-    # tmux outlives Hyprland restarts, so pick up the new Hyprland instance on attach
-    extraConfig = ''
-      set -ga update-environment " HYPRLAND_INSTANCE_SIGNATURE"
-    '';
-  };
-
   age = {
     identityPaths = [ "${config.vars.masterAgeDecryptionKeyPath}" ];
 
@@ -103,6 +95,7 @@
     neovim
     tree
     lazygit
+    tmux
     jq # used by the Claude Code status line script
 
     hyprsunset
