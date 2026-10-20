@@ -86,6 +86,9 @@
     extraGroups = [ "wheel" "wireshark" ]; # wheel: Enable ‘sudo’ for the user, wireshark: enable wireshark perms
     uid = config.vars.mainUserUid;
     hashedPassword = "$y$j9T$zyaR2zLGfatM/AxSzS3T51$pyVfeztgg6TcWmL5qIOiT.GYEkco5yFdTY/PBCsGbR2";
+    # Keep the user manager (and with it user services like tmux) running without any login session,
+    # e.g. after quitting Hyprland or when only connected via SSH
+    linger = true;
     # packages = with pkgs; [];
   };
 
