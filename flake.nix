@@ -85,6 +85,14 @@
           # to pass through arguments to home.nix
           extraSpecialArgs = { inherit inputs; };
         };
+
+        devShells.${system}.stress = pkgs.mkShell {
+          packages = with pkgs; [
+            stress-ng
+            vkmark
+            vulkan-tools
+          ];
+        };
       } # let ... in ...
     );
 }
