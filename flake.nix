@@ -86,13 +86,31 @@
           extraSpecialArgs = { inherit inputs; };
         };
 
-        devShells.${system}.stress = pkgs.mkShell {
-          packages = with pkgs; [
-            stress-ng
-            vkmark
-            vulkan-tools
-          ];
-        };
+        devShells.${system}.stress =
+          let
+            # unfree.nix is a NixOS module and doesn't apply here
+            stressPkgs = import nixpkgs {
+              inherit system;
+              config.allowUnfreePredicate = pkg: nixpkgs.lib.getName pkg == "furmark";
+            };
+          in
+          stressPkgs.mkShell {
+            packages = with stressPkgs; [
+              stress-ng
+              furmark
+              vulkan-tools
+              xrdb
+
+              (writeShellScriptBin "stress-cpu" ''
+                stress-ng --cpu 0 --vm 2 --vm-bytes 75% -t 15m "$@"
+              '')
+              (writeShellScriptBin "stress-gpu" ''
+                # FurMark segfaults under Xwayland if no X resources are set
+                xrdb -query | grep -q . || echo "Xft.dpi: 96" | xrdb -merge
+                furmark --demo furmark-vk --width 1920 --height 1080 --max-time 900 --no-score-box "$@"
+              '')
+            ];
+          };
       } # let ... in ...
     );
 }
