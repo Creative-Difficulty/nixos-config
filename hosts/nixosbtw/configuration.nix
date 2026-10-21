@@ -128,6 +128,9 @@
     };
   };
 
+  # Flush logs to disk every second so the last moments before a hard power-off survive
+  services.journald.settings.Journal.SyncIntervalSec = "1s";
+
   services.fail2ban = {
     enable = true;
     ignoreIP = [
