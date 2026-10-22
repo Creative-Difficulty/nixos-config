@@ -124,6 +124,7 @@
     settings = {
       AllowUsers = [ "${config.vars.mainUser}" ];
       PermitRootLogin = "no";
+      PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
     };
   };
@@ -144,10 +145,6 @@
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-
-  #   users.users.root.openssh.authorizedKeys.keys = [
-  #     "CHANGE"
-  #   ];
 
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.
