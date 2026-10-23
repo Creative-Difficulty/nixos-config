@@ -98,6 +98,7 @@
     neovim
     tree
     lazygit
+    gh
     tmux
     jq # used by the Claude Code status line script
 
