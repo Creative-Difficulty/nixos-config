@@ -12,8 +12,6 @@
   config = lib.mkIf config.hyprland.enable {
     programs.hyprland = {
       enable = true;
-      # Starts graphical-session.target, which xdg-desktop-portal requires
-      withUWSM = true;
       xwayland.enable = true;
     };
 
