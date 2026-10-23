@@ -25,6 +25,9 @@
 
     claude-code.url = "github:sadjow/claude-code-nix";
 
+    # No nixpkgs follows: its fixed-output node_modules hash depends on the pinned bun
+    slick.url = "github:3kh0/slick";
+
     ragenix = {
       url = "github:yaxitech/ragenix";
       # optional, not necessary for the module
@@ -95,6 +98,7 @@
             };
           in
           stressPkgs.mkShell {
+            name = "stress";
             packages = with stressPkgs; [
               stress-ng
               furmark
