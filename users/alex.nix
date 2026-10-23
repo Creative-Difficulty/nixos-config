@@ -8,8 +8,11 @@
 {
   imports = [
     ../vars.nix
+    ../unfree.nix
     ./programs/yazi/yazi.nix
   ];
+
+  unfree.allowed = [ "slack" ];
 
   yazi = {
     enable = true;
@@ -111,6 +114,11 @@
     })
 
     inputs.claude-code.packages.${pkgs.stdenv.hostPlatform.system}.claude-code
+
+    # Slick runs the official Slack's app.asar in its own Electron
+    (inputs.slick.packages.${pkgs.stdenv.hostPlatform.system}.slick.override {
+      slackPackage = pkgs.slack;
+    })
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

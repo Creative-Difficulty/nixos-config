@@ -11,34 +11,13 @@
     "type": "command",
     "command": "bash /home/alex/nixos-config/dotfiles/.config/claude/statusline-command.sh"
   },
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "medium"
+    }
+  },
   "autoMemoryDirectory": "/home/alex/.claude/projects/-home-alex-nixos-config/memory",
   "theme": "dark",
   "inputNeededNotifEnabled": false,
-  "agentPushNotifEnabled": false,
-  "modelSettings": {
-    "claude-opus-5-5": {
-      "effortLevel": "xhigh"
-    }
-  },
-  "sandbox": {
-    "enabled": true,
-    "allowUnsandboxedCommands": false,
-    "failIfUnavailable": true,
-    "filesystem": {
-      "allowWrite": [
-        "~/"
-      ],
-      "denyRead": [
-        "~/keys"
-      ],
-      "denyWrite": [
-        "~/keys"
-      ]
-    },
-    "network": {
-      "allowUnixSockets": [
-        "/nix/var/nix/daemon-socket/socket"
-      ]
-    }
-  }
+  "agentPushNotifEnabled": false
 }
