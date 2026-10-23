@@ -6,6 +6,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 {
@@ -26,6 +27,8 @@
 
   imports = [
     ./hardware-configuration.nix
+
+    inputs.disko.nixosModules.disko
 
     ../../modules/default.nix
 
@@ -111,6 +114,7 @@
 
   environment.systemPackages = with pkgs; [
     # The Nano editor is installed by default
+    inputs.ragenix.packages.${pkgs.stdenv.hostPlatform.system}.default
     fastfetch
     btop
 

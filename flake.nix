@@ -4,8 +4,6 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,13 +38,8 @@
 
   outputs =
     {
-      self,
       nixpkgs,
-      disko,
       home-manager,
-      ragenix,
-      yazi,
-      nix-minecraft,
       ...
     }@inputs:
     (
@@ -61,14 +54,6 @@
             # Give the configuration access to inputs of the flake and outputs
             specialArgs = { inherit inputs; };
             modules = [
-              disko.nixosModules.disko
-              nix-minecraft.nixosModules.minecraft-servers
-
-              {
-                environment.systemPackages = [ ragenix.packages.${system}.default ];
-                nixpkgs.overlays = [ nix-minecraft.overlay ];
-              }
-
               ./hosts/nixosbtw/hardware-configuration.nix
               ./hosts/nixosbtw/configuration.nix
             ];
@@ -81,7 +66,7 @@
           # the path to your home.nix.
           modules = [
             ./users/alex.nix
-            ragenix.homeManagerModules.default
+            inputs.ragenix.homeManagerModules.default
           ];
 
           # Optionally use extraSpecialArgs

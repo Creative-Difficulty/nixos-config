@@ -16,6 +16,7 @@
       "effortLevel": "medium"
     }
   },
+  "autoMemoryEnabled": true,
   "autoMemoryDirectory": "/home/alex/.claude/projects/-home-alex-nixos-config/memory",
   "theme": "dark",
   "inputNeededNotifEnabled": false,
