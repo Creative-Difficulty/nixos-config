@@ -55,7 +55,7 @@
     settings = {
       default_session = {
         user = "greeter";
-        command = lib.getExe' pkgs.tuigreet "tuigreet --remember --time --issue"; # you may pass `--config` here
+        command = lib.getExe' pkgs.tuigreet "tuigreet --remember --time --issue --cmd 'uwsm start hyprland-uwsm.desktop'"; # you may pass `--config` here
       };
     };
   };
