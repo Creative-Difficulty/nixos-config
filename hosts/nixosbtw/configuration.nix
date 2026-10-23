@@ -55,7 +55,8 @@
     settings = {
       default_session = {
         user = "greeter";
-        command = lib.getExe' pkgs.tuigreet "tuigreet --remember --time --issue --cmd 'uwsm start hyprland-uwsm.desktop'"; # you may pass `--config` here
+        # Without --sessions, tuigreet lists each session twice (it's in two XDG_DATA_DIRS entries)
+        command = "${lib.getExe' pkgs.tuigreet "tuigreet"} --remember --time --issue --cmd 'uwsm start hyprland-uwsm.desktop' --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions"; # you may pass `--config` here
       };
     };
   };
