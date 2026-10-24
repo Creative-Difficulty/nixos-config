@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   inputs,
   ...
@@ -45,6 +46,34 @@
   home.homeDirectory = "${config.vars.homeDirectory}";
 
   programs.eww.enable = true;
+
+  programs.nh = {
+    enable = true;
+    # Adds `nh hm` as an alias for `nh home`
+    package = pkgs.symlinkJoin {
+      inherit (pkgs.nh) name meta;
+      paths = [ pkgs.nh ];
+      postBuild = ''
+        rm $out/bin/nh
+        cat > $out/bin/nh <<'EOF'
+        #!${pkgs.runtimeShell}
+        if [ "$1" = hm ]; then shift; set -- home "$@"; fi
+        exec ${lib.getExe pkgs.nh} "$@"
+        EOF
+        chmod +x $out/bin/nh
+      '';
+    };
+    flake = "${config.vars.homeDirectory}/nixos-config";
+    clean = {
+      enable = true;
+      extraArgs = [
+        "--keep-since"
+        "7d"
+        "--keep"
+        "5"
+      ];
+    };
+  };
 
   age = {
     identityPaths = [ "${config.vars.masterAgeDecryptionKeyPath}" ];
