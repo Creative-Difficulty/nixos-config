@@ -16,15 +16,6 @@
     "pipe-operators"
   ];
 
-  programs.nh = {
-    enable = true;
-    flake = "${config.vars.homeDirectory}/nixos-config";
-    clean = {
-      enable = true;
-      extraArgs = "--keep-since 7d --keep 5";
-    };
-  };
-
   imports = [
     ./hardware-configuration.nix
 
