@@ -1,0 +1,5 @@
+[Default Applications]
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
+text/html=librewolf-link.desktop
+x-scheme-handler/http=librewolf-link.desktop
+x-scheme-handler/https=librewolf-link.desktop
