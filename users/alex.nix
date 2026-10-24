@@ -100,6 +100,9 @@
 
     ".gitconfig".source = ../dotfiles/.gitconfig;
 
+    ".local/share/applications/librewolf-link.desktop".source =
+      ../dotfiles/.local/share/applications/librewolf-link.desktop;
+
     # Note: Hyprland has to be enabled from the system module, home-manager just manages the configuration file
 
     # Because this file will be appened to, we can't just set the souce path, as that could overwrite it due to eval order
