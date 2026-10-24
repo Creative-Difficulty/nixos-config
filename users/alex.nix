@@ -134,6 +134,7 @@
     jq # used by the Claude Code status line script
 
     hyprsunset
+    rofi
 
     libinput
     evtest
