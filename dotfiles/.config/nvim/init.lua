@@ -100,9 +100,12 @@ vim.pack.add({
   'https://github.com/stevearc/quicker.nvim',
   -- Git integration
   'https://github.com/lewis6991/gitsigns.nvim',
+  -- In-buffer Markdown rendering
+  'https://github.com/MeanderingProgrammer/render-markdown.nvim',
 })
 
 require('fzf-lua').setup { fzf_colors = true }
 require('mini.completion').setup {}
 require('quicker').setup {}
 require('gitsigns').setup {}
+require('render-markdown').setup {}
