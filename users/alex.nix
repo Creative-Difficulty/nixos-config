@@ -41,6 +41,20 @@
     systemd.enable = true;
   };
 
+  # systemd 262 refuses Ghostty 1.3.1's notify-reload unit (ghostty-org/ghostty#14398); guard drops it once Ghostty > 1.3.1
+  xdg.configFile."systemd/user/app-com.mitchellh.ghostty.service.d/type-dbus.conf" =
+    lib.mkIf
+      (
+        config.programs.ghostty.systemd.enable
+        && lib.versionOlder config.programs.ghostty.package.version "1.3.2"
+      )
+      {
+        text = ''
+          [Service]
+          Type=dbus
+        '';
+      };
+
   # Home Manager needs a bit of information about you and the paths it should manage.
   home.username = "${config.vars.mainUser}";
   home.homeDirectory = "${config.vars.homeDirectory}";
