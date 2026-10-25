@@ -36,7 +36,8 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
-local terminal    = "ghostty"
+-- +new-window goes through the Ghostty systemd daemon instead of racing it for its D-Bus name
+local terminal    = "ghostty +new-window"
 local fileManager = "dolphin"
 local menu        = "rofi -show drun"
 
