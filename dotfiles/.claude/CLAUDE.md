@@ -18,6 +18,7 @@ Standing rules go in this file (`~/nixos-config/dotfiles/.claude/CLAUDE.md`), no
 ## Git
 
 - By default, leave changes uncommitted and suggest a commit message (conventional-commit subject, short "why" body). I review and commit in lazygit. Commit yourself only when I say so.
+- Trivial settings that change often (e.g. the Claude Code effort level or model in `settings.json`) never get their own commit. Fold them into whatever commit comes next.
 - Never `git push`. Only exception: in `~/Photostore`, commit and push after every change.
 - Stage files by name, never `git add -A` or `git add .`.
 - Never create git worktrees inside a repo.
