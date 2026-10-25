@@ -30,5 +30,9 @@
 
     xdg.portal.enable = true;
     xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
+    # Its binary is in libexec; hyprland.lua starts it since graphical-session.target never runs
+    environment.systemPackages = [ pkgs.hyprpolkitagent ];
+    environment.pathsToLink = [ "/libexec" ];
   };
 }
