@@ -53,6 +53,7 @@ local menu        = "rofi -show drun"
    hl.on("hyprland.start", function ()
      hl.exec_cmd(terminal)
      hl.exec_cmd("eww daemon && eww open bar")
+     hl.exec_cmd("/run/current-system/sw/libexec/hyprpolkitagent")
 --   hl.exec_cmd("waybar & hyprpaper & firefox")
    end)
 
