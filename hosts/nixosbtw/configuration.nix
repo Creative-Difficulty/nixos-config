@@ -15,6 +15,8 @@
     "flakes"
     "pipe-operators"
   ];
+  # A power cut corrupted store paths once; fsync them so it can't happen again.
+  nix.settings.fsync-store-paths = true;
 
   imports = [
     ./hardware-configuration.nix
