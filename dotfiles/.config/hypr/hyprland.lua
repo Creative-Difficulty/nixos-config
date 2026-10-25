@@ -51,6 +51,8 @@ local menu        = "rofi -show drun"
 -- Or execute your favorite apps at launch like this:
 --
    hl.on("hyprland.start", function ()
+     -- Stop first so session services from a previous Hyprland don't keep its dead environment
+     hl.exec_cmd("dbus-update-activation-environment --systemd --all && systemctl --user stop hyprland-session.target; systemctl --user start hyprland-session.target")
      hl.exec_cmd(terminal)
      hl.exec_cmd("eww daemon && eww open bar")
      hl.exec_cmd("/run/current-system/sw/libexec/hyprpolkitagent")
@@ -269,7 +271,7 @@ hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.kill())
-hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("systemctl --user stop hyprland-session.target; command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
