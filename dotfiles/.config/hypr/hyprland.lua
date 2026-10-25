@@ -55,7 +55,6 @@ local menu        = "rofi -show drun"
      hl.exec_cmd("dbus-update-activation-environment --systemd --all && systemctl --user stop hyprland-session.target; systemctl --user start hyprland-session.target")
      hl.exec_cmd(terminal)
      hl.exec_cmd("eww daemon && eww open bar")
-     hl.exec_cmd("/run/current-system/sw/libexec/hyprpolkitagent")
 --   hl.exec_cmd("waybar & hyprpaper & firefox")
    end)
 

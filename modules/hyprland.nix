@@ -39,11 +39,9 @@
       after = [ "graphical-session-pre.target" ];
     };
 
-    # Its binary is in libexec; hyprland.lua starts it since graphical-session.target never runs
-    environment.systemPackages = [
-      pkgs.hyprpolkitagent
-      pkgs.kdePackages.dolphin
-    ];
-    environment.pathsToLink = [ "/libexec" ];
+    systemd.packages = [ pkgs.hyprpolkitagent ];
+    systemd.user.services.hyprpolkitagent.wantedBy = [ "graphical-session.target" ];
+
+    environment.systemPackages = [ pkgs.kdePackages.dolphin ];
   };
 }
