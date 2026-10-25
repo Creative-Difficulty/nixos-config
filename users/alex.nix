@@ -12,7 +12,10 @@
     ./programs/yazi/yazi.nix
   ];
 
-  unfree.allowed = [ "slack" ];
+  unfree.allowed = [
+    "slack"
+    "obsidian"
+  ];
 
   yazi = {
     enable = true;
@@ -147,6 +150,7 @@
     lazygit
     gh
     tmux
+    obsidian
     jq # used by the Claude Code status line script
 
     hyprsunset
