@@ -16,23 +16,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     claude-code.url = "github:sadjow/claude-code-nix";
 
     # No nixpkgs follows: its fixed-output node_modules hash depends on the pinned bun
     slick.url = "github:3kh0/slick";
 
-    ragenix = {
-      url = "github:yaxitech/ragenix";
-      # optional, not necessary for the module
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.rust-overlay.follows = "rust-overlay";
-      # optionally choose not to download darwin deps (saves some resources on Linux, produces a warning, because for some reason ragenix doesn't pass through the darwin module from agenix even though they say they do)
-      # inputs.darwin.follows = "";
     };
   };
 
@@ -66,7 +57,7 @@
           # the path to your home.nix.
           modules = [
             ./users/alex.nix
-            inputs.ragenix.homeManagerModules.default
+            inputs.agenix.homeManagerModules.default
           ];
 
           # Optionally use extraSpecialArgs
