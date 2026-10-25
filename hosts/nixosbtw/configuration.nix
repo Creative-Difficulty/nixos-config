@@ -112,7 +112,7 @@
 
   environment.systemPackages = with pkgs; [
     # The Nano editor is installed by default
-    inputs.ragenix.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
     fastfetch
     btop
 
