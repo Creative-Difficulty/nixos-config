@@ -45,6 +45,8 @@
 
   brightness.enable = true;
 
+  disks.enable = true;
+
   services.greetd = {
     enable = true;
     useTextGreeter = true;
