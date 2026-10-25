@@ -87,7 +87,10 @@
 
   users.users.${config.vars.mainUser} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "wireshark" ]; # wheel: Enable ‘sudo’ for the user, wireshark: enable wireshark perms
+    extraGroups = [
+      "wheel"
+      "wireshark"
+    ]; # wheel: Enable ‘sudo’ for the user, wireshark: enable wireshark perms
     uid = config.vars.mainUserUid;
     hashedPassword = "$y$j9T$zyaR2zLGfatM/AxSzS3T51$pyVfeztgg6TcWmL5qIOiT.GYEkco5yFdTY/PBCsGbR2";
     # Keep the user manager (and with it user services like tmux) running without any login session,
@@ -109,7 +112,6 @@
     fastfetch
     btop
 
-    nixfmt
     nix-prefetch
     ckb-next
     kitty

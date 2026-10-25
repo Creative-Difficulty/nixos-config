@@ -74,6 +74,8 @@
           extraSpecialArgs = { inherit inputs; };
         };
 
+        formatter.${system} = pkgs.nixfmt-tree;
+
         devShells.${system}.stress =
           let
             # unfree.nix is a NixOS module and doesn't apply here
