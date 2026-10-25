@@ -31,6 +31,14 @@
     xdg.portal.enable = true;
     xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
+    # graphical-session.target refuses manual starts; hyprland.lua starts this instead
+    systemd.user.targets.hyprland-session = {
+      description = "Hyprland session";
+      bindsTo = [ "graphical-session.target" ];
+      wants = [ "graphical-session-pre.target" ];
+      after = [ "graphical-session-pre.target" ];
+    };
+
     # Its binary is in libexec; hyprland.lua starts it since graphical-session.target never runs
     environment.systemPackages = [
       pkgs.hyprpolkitagent
