@@ -8,5 +8,6 @@
 
   # allowUnfreePredicate is a function, so a second definition silently overrides the first instead of merging.
   # Modules therefore add to the unfree.allowed list, and the predicate is defined only here.
-  config.nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.unfree.allowed;
+  config.nixpkgs.config.allowUnfreePredicate =
+    pkg: builtins.elem (lib.getName pkg) config.unfree.allowed;
 }
