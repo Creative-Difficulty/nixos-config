@@ -108,4 +108,4 @@ require('fzf-lua').setup { fzf_colors = true }
 require('mini.completion').setup {}
 require('quicker').setup {}
 require('gitsigns').setup {}
-require('render-markdown').setup {}
+require('render-markdown').setup { anti_conceal = { enabled = false } }
