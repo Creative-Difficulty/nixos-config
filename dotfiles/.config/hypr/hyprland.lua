@@ -323,6 +323,7 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 -- Screenshots to the clipboard
 hl.bind("Print",         hl.dsp.exec_cmd("grimblast copy area"))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd("grimblast copy output"))
+hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("grimblast save area - | satty --filename -"))
 
 
 --------------------------------
@@ -372,5 +373,12 @@ hl.window_rule({
     match = { class = "hyprland-run" },
 
     move  = "20 monitor_h-120",
+    float = true,
+})
+
+hl.window_rule({
+    name  = "float-satty",
+    match = { class = "com.gabm.satty" },
+
     float = true,
 })

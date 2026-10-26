@@ -156,6 +156,8 @@
     hyprsunset
     rofi
     grimblast
+    satty
+    wl-clipboard # satty's copy-command
 
     libinput
     evtest
