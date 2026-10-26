@@ -36,10 +36,23 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
--- Ghostty's D-Bus new-window action, unlike `ghostty +new-window`, doesn't send Hyprland's cwd, so the window inherits the focused one's
-local terminal    = "busctl --user call com.mitchellh.ghostty /com/mitchellh/ghostty org.gtk.Actions Activate 'sava{sv}' new-window 0 0"
+-- Ghostty's D-Bus new-window action, unlike `ghostty +new-window`, doesn't send Hyprland's cwd, so the window inherits the last focused Ghostty window's
+local terminalInheritingCwd = "busctl --user call com.mitchellh.ghostty /com/mitchellh/ghostty org.gtk.Actions Activate 'sava{sv}' new-window 0 0"
 local fileManager = "dolphin"
 local menu        = "rofi -show drun"
+
+-- Inherit the cwd only when the last focused Ghostty window is on this workspace, not one left behind on another
+local function terminal()
+    local lastGhostty
+    for _, window in ipairs(hl.get_windows({ class = "com.mitchellh.ghostty" })) do
+        if not lastGhostty or window.focus_history_id < lastGhostty.focus_history_id then lastGhostty = window end
+    end
+    if lastGhostty and lastGhostty.workspace and lastGhostty.workspace.id == hl.get_active_workspace().id then
+        hl.exec_cmd(terminalInheritingCwd)
+    else
+        hl.exec_cmd("ghostty +new-window --working-directory=~/")
+    end
+end
 
 
 -------------------
@@ -54,7 +67,7 @@ local menu        = "rofi -show drun"
    hl.on("hyprland.start", function ()
      -- Stop first so session services from a previous Hyprland don't keep its dead environment
      hl.exec_cmd("dbus-update-activation-environment --systemd --all && systemctl --user stop hyprland-session.target; systemctl --user start hyprland-session.target")
-     hl.exec_cmd(terminal)
+     terminal()
      hl.exec_cmd("eww daemon && eww open bar")
 --   hl.exec_cmd("waybar & hyprpaper & firefox")
    end)
@@ -267,7 +280,7 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + Q", terminal)
 local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + SHIFT + C", hl.dsp.window.kill())
