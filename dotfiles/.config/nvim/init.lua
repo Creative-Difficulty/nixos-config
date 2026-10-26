@@ -108,4 +108,7 @@ require('fzf-lua').setup { fzf_colors = true }
 require('mini.completion').setup {}
 require('quicker').setup {}
 require('gitsigns').setup {}
-require('render-markdown').setup { anti_conceal = { enabled = false } }
+require('render-markdown').setup {
+  anti_conceal = { enabled = false }, -- Keep the cursor line rendered, not raw Markdown.
+  win_options = { concealcursor = { rendered = 'nc' } },
+}
