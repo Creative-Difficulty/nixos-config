@@ -1,0 +1,5 @@
+[general]
+early-exit = true
+initial-tool = "arrow"
+# Satty's own Wayland clipboard empties when its window closes
+copy-command = "wl-copy"
