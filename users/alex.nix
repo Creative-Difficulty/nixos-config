@@ -117,6 +117,8 @@
 
     ".gitconfig".source = ../dotfiles/.gitconfig;
 
+    ".profile".source = ../dotfiles/.profile;
+
     ".claude/CLAUDE.md".source = ../dotfiles/.claude/CLAUDE.md;
 
     ".local/share/applications/librewolf-link.desktop".source =
