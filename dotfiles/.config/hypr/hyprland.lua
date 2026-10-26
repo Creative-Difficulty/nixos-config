@@ -36,8 +36,8 @@ hl.monitor({
 ---------------------
 
 -- Set programs that you use
--- +new-window goes through the Ghostty systemd daemon instead of racing it for its D-Bus name
-local terminal    = "ghostty +new-window"
+-- Ghostty's D-Bus new-window action, unlike `ghostty +new-window`, doesn't send Hyprland's cwd, so the window inherits the focused one's
+local terminal    = "busctl --user call com.mitchellh.ghostty /com/mitchellh/ghostty org.gtk.Actions Activate 'sava{sv}' new-window 0 0"
 local fileManager = "dolphin"
 local menu        = "rofi -show drun"
 
