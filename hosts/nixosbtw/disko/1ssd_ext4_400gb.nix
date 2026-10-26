@@ -3,7 +3,7 @@
   disko.devices = {
     disk = {
       main = {
-        device = lib.mkDefault "/dev/nvme0n1";
+        device = lib.mkDefault "/dev/disk/by-id/nvme-Samsung_SSD_980_1TB_S649NL0TC30845Y_1";
         type = "disk";
         content = {
           type = "gpt";
