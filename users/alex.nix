@@ -19,7 +19,7 @@
 
   yazi = {
     enable = true;
-    bleedingEdge = true;
+    bleedingEdge = false;
     enableCommandAlias = true;
     enableShellWrapper = true;
     # yazi.toml is deployed through the recursive .config link below
