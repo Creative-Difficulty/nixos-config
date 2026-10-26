@@ -155,6 +155,7 @@
 
     hyprsunset
     rofi
+    grimblast
 
     libinput
     evtest
