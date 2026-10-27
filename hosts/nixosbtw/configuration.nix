@@ -47,6 +47,8 @@
 
   disks.enable = true;
 
+  nvidia.enable = true;
+
   services.greetd = {
     enable = true;
     useTextGreeter = true;
