@@ -1,0 +1,2 @@
+[General]
+TerminalApplication=ghostty --gtk-single-instance=false --working-directory=inherit
