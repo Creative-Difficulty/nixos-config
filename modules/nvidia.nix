@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   options = {
-    nvidia.enable = lib.mkEnableOption "Whether to enable the nvidia graphics drivers";
+    nvidia.enable = lib.mkEnableOption "the proprietary nvidia driver in place of nouveau";
   };
 
   config = lib.mkIf config.nvidia.enable {
