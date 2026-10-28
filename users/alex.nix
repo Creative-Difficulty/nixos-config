@@ -161,6 +161,36 @@
     grimblast
     satty
     wl-clipboard # satty's copy-command
+    (writeShellApplication {
+      name = "capture";
+      runtimeInputs = [
+        rofi
+        grimblast
+        satty
+        slurp
+        wf-recorder
+        procps
+      ];
+      text = ''
+        options="Screenshot area\nScreenshot window\nScreenshot screen\nScreenshot area → satty\nRecord area\nRecord screen"
+        if pgrep -x wf-recorder >/dev/null; then
+          options="Stop recording"
+        fi
+
+        choice=$(echo -e "$options" | rofi -dmenu -i -p capture) || exit 0
+        video="$HOME/Videos/$(date +%Y-%m-%d_%H-%M-%S).mp4"
+
+        case "$choice" in
+          "Screenshot area") grimblast copy area ;;
+          "Screenshot window") grimblast copy active ;;
+          "Screenshot screen") grimblast copy output ;;
+          "Screenshot area → satty") grimblast save area - | satty --filename - ;;
+          "Record area") mkdir -p "$HOME/Videos" && wf-recorder -g "$(slurp)" -f "$video" ;;
+          "Record screen") mkdir -p "$HOME/Videos" && wf-recorder -g "$(slurp -o)" -f "$video" ;;
+          "Stop recording") pkill -INT -x wf-recorder ;;
+        esac
+      '';
+    })
 
     libinput
     evtest
