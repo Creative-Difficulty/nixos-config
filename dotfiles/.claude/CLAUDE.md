@@ -19,7 +19,7 @@ Standing rules go in this file (`~/nixos-config/dotfiles/.claude/CLAUDE.md`), no
 
 - By default, leave changes uncommitted and suggest a commit message (conventional-commit subject, short "why" body). I review and commit in lazygit. Commit yourself only when I say so.
 - Trivial settings that change often (e.g. the Claude Code effort level or model in `settings.json`) never get their own commit. Fold them into whatever commit comes next.
-- Never `git push`. Only exception: in `~/Photostore`, commit and push after every change.
+- Never `git push`. Exceptions: in `~/Photostore` and `~/projects/saucysplat`, commit and push every change without asking.
 - Stage files by name, never `git add -A` or `git add .`.
 - Never create git worktrees inside a repo.
 - GitHub over SSH fails from your shell (the key needs a passphrase). Use HTTPS with `gh` as the credential helper, e.g. `git -c credential.helper= -c 'credential.helper=!gh auth git-credential' clone https://…`, and keep `origin` on SSH.
@@ -35,6 +35,7 @@ Standing rules go in this file (`~/nixos-config/dotfiles/.claude/CLAUDE.md`), no
 - Everything is declarative. Never change system or config state imperatively (chmod, setfacl, useradd, `nix profile install`, editing live config outside the repo). Changes go into `~/nixos-config`, and I apply them with a rebuild or switch. If there's no declarative way, tell me. My own app use (logins etc.) and data tasks I ask for (cloning a repo, moving my files) are fine.
 - Never start a system or home build or switch; I may already be running one. Evals are fine.
 - Tools a task needs go in a devshell (flake `devShells`). Ad-hoc `nix shell` is second choice; global installs only if I ask.
+- Use bun instead of npm wherever possible: `bun install`, `bun add`, `bunx` instead of `npx`, `bun.lock` instead of `package-lock.json`.
 - `~/keys` (age master key) is off-limits: never read, list, glob or reference it, not even indirectly. Deny rules in `settings.json` guard it; don't work around them.
 - You run as alex. The deny rules are a safeguard against accidents, not a defense against a hostile agent. Don't propose threat-model redesigns.
 - No backups by design: everything is reproducible from nixos-config or lives in other git repos. Tell me when you notice important data outside a git repo.
