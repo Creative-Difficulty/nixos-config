@@ -10,49 +10,76 @@
     brightness.connector = lib.mkOption {
       type = lib.types.str;
       default = "DP-1";
-      description = "Name of the i2c bus (the monitor's connector) to attach the ddcci driver to";
+      description = "DRM connector of the monitor to attach the ddcci driver to";
     };
   };
 
-  config = lib.mkIf config.brightness.enable {
-    boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
-    boot.kernelModules = [ "ddcci_backlight" ];
+  config =
+    let
+      connector = config.brightness.connector;
+      # ddcutil matches the connector's EDID to find nvidia's bus, since its name doesn't say which connector it serves
+      findBus =
+        if config.nvidia.enable then
+          ''ddcutil detect --terse | awk -v c="${connector}" '/I2C bus:/ {bus=$3} $0 ~ "DRM connector: *card[0-9]+-" c "$" {sub("/dev/", "", bus); print bus}' ''
+        else
+          ''grep -lx "${connector}" /sys/bus/i2c/devices/i2c-*/name | cut -d/ -f6'';
+    in
+    lib.mkIf config.brightness.enable {
+      boot.extraModulePackages = [ config.boot.kernelPackages.ddcci-driver ];
+      boot.kernelModules = [ "ddcci_backlight" ];
 
-    hardware.i2c.enable = true;
-    users.users.${config.vars.mainUser}.extraGroups = [ "i2c" ];
+      hardware.i2c.enable = true;
+      users.users.${config.vars.mainUser}.extraGroups = [ "i2c" ];
 
-    # nouveau's DP AUX bus isn't auto-probed, so attach ddcci to the bus named after the connector.
-    # The bus only appears once nouveau has loaded, so a udev rule starts the attach service when it does
-    services.udev.extraRules = ''
-      ACTION=="add", SUBSYSTEM=="i2c", ATTR{name}=="${config.brightness.connector}", TAG+="systemd", ENV{SYSTEMD_WANTS}+="ddcci-attach@%k.service"
-    '';
+      # ddcci can't auto-probe on kernel 6.8+, so a udev rule starts the attach service once the monitor's bus exists.
+      # nouveau names its bus after the connector; nvidia's buses have generic names, so wait for the DRM connector instead
+      services.udev.extraRules =
+        if config.nvidia.enable then
+          ''
+            ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card*-${connector}", TAG+="systemd", ENV{SYSTEMD_WANTS}+="ddcci-attach.service"
+          ''
+        else
+          ''
+            ACTION=="add", SUBSYSTEM=="i2c", ATTR{name}=="${connector}", TAG+="systemd", ENV{SYSTEMD_WANTS}+="ddcci-attach.service"
+          '';
 
-    # Right after the bus appears the monitor often doesn't answer yet (probe fails with -19), so retry
-    systemd.services."ddcci-attach@" = {
-      description = "Attach ddcci driver to i2c bus %i";
-      serviceConfig.Type = "oneshot";
-      scriptArgs = "%i";
-      script = ''
-        bus=/sys/bus/i2c/devices/$1
-        dev=$bus/''${1#i2c-}-0037
-        for attempt in $(seq 1 10); do
-          [ -e "$dev" ] && echo 0x37 > "$bus/delete_device"
-          echo ddcci 0x37 > "$bus/new_device"
-          # The driver link only exists if the monitor answered the probe
-          if [ -e "$dev/driver" ]; then
-            echo "ddcci attached on attempt $attempt"
-            exit 0
-          fi
-          sleep 3
-        done
-        echo "Monitor didn't answer DDC/CI after $attempt attempts"
-        exit 1
-      '';
+      # Right after the bus appears the monitor often doesn't answer yet (probe fails with -19), so retry
+      systemd.services.ddcci-attach = {
+        description = "Attach ddcci driver to the ${connector} monitor";
+        serviceConfig.Type = "oneshot";
+        path = [
+          pkgs.ddcutil
+          pkgs.gawk
+        ];
+        script = ''
+          for attempt in $(seq 1 10); do
+            name=$(${findBus})
+            if [ -n "$name" ]; then
+              bus=/sys/bus/i2c/devices/$name
+              dev=$bus/''${name#i2c-}-0037
+              # Re-adding a bound ddcci leaves its old device behind and the new probe fails with -17
+              if [ -e "$dev/driver" ]; then
+                echo "ddcci already attached to $name"
+                exit 0
+              fi
+              [ -e "$dev" ] && echo 0x37 > "$bus/delete_device"
+              echo ddcci 0x37 > "$bus/new_device"
+              # The driver link only exists if the monitor answered the probe
+              if [ -e "$dev/driver" ]; then
+                echo "ddcci attached to $name on attempt $attempt"
+                exit 0
+              fi
+            fi
+            sleep 3
+          done
+          echo "Monitor didn't answer DDC/CI after $attempt attempts"
+          exit 1
+        '';
+      };
+
+      environment.systemPackages = with pkgs; [
+        brightnessctl
+        ddcutil
+      ];
     };
-
-    environment.systemPackages = with pkgs; [
-      brightnessctl
-      ddcutil
-    ];
-  };
 }
