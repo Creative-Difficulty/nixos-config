@@ -151,6 +151,7 @@
     tree
     lazygit
     gh
+    git-lfs
     tmux
     obsidian
     jq # used by the Claude Code status line script
