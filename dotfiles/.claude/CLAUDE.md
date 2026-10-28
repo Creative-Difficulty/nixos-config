@@ -19,7 +19,7 @@ Standing rules go in this file (`~/nixos-config/dotfiles/.claude/CLAUDE.md`), no
 
 - By default, leave changes uncommitted and suggest a commit message (conventional-commit subject, short "why" body). I review and commit in lazygit. Commit yourself only when I say so.
 - Trivial settings that change often (e.g. the Claude Code effort level or model in `settings.json`) never get their own commit. Fold them into whatever commit comes next.
-- Never `git push`. Exceptions: in `~/Photostore` and `~/projects/saucysplat`, commit and push every change without asking.
+- Never `git push`. Exceptions: in `~/Photostore` and `~/projects/saucysplat`, commit and push every change without asking. Deploying (e.g. `splat-deploy`, GitHub Pages, Cloudflare) is separate: only when I ask.
 - Stage files by name, never `git add -A` or `git add .`.
 - Never create git worktrees inside a repo.
 - GitHub over SSH fails from your shell (the key needs a passphrase). Use HTTPS with `gh` as the credential helper, e.g. `git -c credential.helper= -c 'credential.helper=!gh auth git-credential' clone https://…`, and keep `origin` on SSH.
