@@ -102,12 +102,18 @@ vim.pack.add({
   'https://github.com/lewis6991/gitsigns.nvim',
   -- In-buffer Markdown rendering
   'https://github.com/MeanderingProgrammer/render-markdown.nvim',
+  -- File explorer
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/MunifTanjim/nui.nvim',
+  { src = 'https://github.com/nvim-neo-tree/neo-tree.nvim', version = 'v3.x' },
 })
 
 require('fzf-lua').setup { fzf_colors = true }
 require('mini.completion').setup {}
 require('quicker').setup {}
 require('gitsigns').setup {}
+require('neo-tree').setup {}
+vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>')
 require('render-markdown').setup {
   anti_conceal = { enabled = false }, -- Keep the cursor line rendered, not raw Markdown.
   win_options = { concealcursor = { rendered = 'nc' } },
