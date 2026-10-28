@@ -117,6 +117,7 @@
     inputs.agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
     fastfetch
     btop
+    nvtopPackages.nvidia
 
     nix-prefetch
     ckb-next
