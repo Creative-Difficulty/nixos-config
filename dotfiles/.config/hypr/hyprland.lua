@@ -337,6 +337,7 @@ hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = tr
 hl.bind("Print",         hl.dsp.exec_cmd("grimblast copy area"))
 hl.bind("SHIFT + Print", hl.dsp.exec_cmd("grimblast copy output"))
 hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd("grimblast save area - | satty --filename -"))
+hl.bind(mainMod .. " + SHIFT + Print", hl.dsp.exec_cmd("capture"))
 
 
 --------------------------------
