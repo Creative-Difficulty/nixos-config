@@ -64,6 +64,17 @@
 
   programs.eww.enable = true;
 
+  # No WantedBy: started on demand, and Requisite keeps it from starting outside Hyprland
+  systemd.user.services.wayvnc = {
+    Unit = {
+      Description = "wayvnc VNC server";
+      Requisite = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+      After = [ "graphical-session.target" ];
+    };
+    Service.ExecStart = "${lib.getExe pkgs.wayvnc} --render-cursor";
+  };
+
   programs.nh = {
     enable = true;
     # Adds `nh hm` as an alias for `nh home`
@@ -215,6 +226,8 @@
     })
 
     qimgv
+
+    wayvnc
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
