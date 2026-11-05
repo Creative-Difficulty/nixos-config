@@ -169,6 +169,7 @@
         satty
         slurp
         wf-recorder
+        wl-clipboard
         procps
       ];
       text = ''
@@ -189,6 +190,10 @@
           "Record screen") mkdir -p "$HOME/Videos" && wf-recorder -g "$(slurp -o)" -f "$video" ;;
           "Stop recording") pkill -INT -x wf-recorder ;;
         esac
+
+        if [ -f "$video" ]; then
+          echo "file://$video" | wl-copy -t text/uri-list
+        fi
       '';
     })
 
