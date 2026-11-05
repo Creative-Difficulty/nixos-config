@@ -49,6 +49,8 @@
 
   wayvnc.enable = false;
 
+  sunshine.enable = true;
+
   nvidia.enable = true;
 
   services.greetd = {
