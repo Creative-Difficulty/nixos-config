@@ -10,6 +10,7 @@
     ../vars.nix
     ../unfree.nix
     ./programs/yazi/yazi.nix
+    ./programs/wayvnc/wayvnc.nix
   ];
 
   unfree.allowed = [
@@ -24,6 +25,8 @@
     enableShellWrapper = true;
     # yazi.toml is deployed through the recursive .config link below
   };
+
+  wayvnc.enable = false;
 
   programs.librewolf = {
     enable = true;
@@ -63,17 +66,6 @@
   home.homeDirectory = "${config.vars.homeDirectory}";
 
   programs.eww.enable = true;
-
-  # No WantedBy: started on demand, and Requisite keeps it from starting outside Hyprland
-  systemd.user.services.wayvnc = {
-    Unit = {
-      Description = "wayvnc VNC server";
-      Requisite = [ "graphical-session.target" ];
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
-    };
-    Service.ExecStart = "${lib.getExe pkgs.wayvnc} --render-cursor";
-  };
 
   programs.nh = {
     enable = true;
@@ -226,8 +218,6 @@
     })
 
     qimgv
-
-    wayvnc
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the

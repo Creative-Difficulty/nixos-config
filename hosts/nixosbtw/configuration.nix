@@ -47,6 +47,8 @@
 
   disks.enable = true;
 
+  wayvnc.enable = false;
+
   nvidia.enable = true;
 
   services.greetd = {
@@ -143,9 +145,6 @@
     };
   };
 
-  # wayvnc has no NixOS module, so its enable_pam login needs this /etc/pam.d/wayvnc entry
-  security.pam.services.wayvnc = { };
-
   # Flush logs to disk every second so the last moments before a hard power-off survive
   services.journald.settings.Journal.SyncIntervalSec = "1s";
 
@@ -161,10 +160,6 @@
 
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ 22 ];
-  # wayvnc only from the home LAN; allowedTCPPorts would also expose it over global IPv6
-  networking.firewall.extraCommands = ''
-    iptables -A nixos-fw -p tcp --dport 5900 -s 192.168.0.0/24 -j nixos-fw-accept
-  '';
   # networking.firewall.allowedUDPPorts = [ ... ];
 
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
