@@ -47,7 +47,7 @@
 
   disks.enable = true;
 
-  wayvnc.enable = false;
+  wayvnc_prereq.enable = false;
 
   sunshine.enable = true;
 
