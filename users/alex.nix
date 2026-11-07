@@ -118,10 +118,6 @@
       github_key = "${config.age.secrets.alex_github_ssh_key.path}";
     };
 
-    ".ssh/authorized_keys".source = pkgs.replaceVars ../dotfiles/.ssh/authorized_keys {
-      macbook_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJKE3VnkOEwG11Mv4bFmGqr3ETonz9Z3QVFJzC4hEBLM alexeschanz@MBP-Alex.local";
-    };
-
     ".gitconfig".source = ../dotfiles/.gitconfig;
 
     ".profile".source = ../dotfiles/.profile;

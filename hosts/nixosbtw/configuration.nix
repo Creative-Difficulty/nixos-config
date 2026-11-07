@@ -106,6 +106,7 @@
     # Keep the user manager (and with it user services like tmux) running without any login session,
     # e.g. after quitting Hyprland or when only connected via SSH
     linger = true;
+    openssh.authorizedKeys.keyFiles = [ ../../dotfiles/.ssh/authorized_keys ];
     # packages = with pkgs; [];
   };
 
