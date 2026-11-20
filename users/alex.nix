@@ -157,6 +157,7 @@
     git-lfs
     tmux
     obsidian
+    zed-editor
     jq # used by the Claude Code status line script
 
     hyprsunset
