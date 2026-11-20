@@ -133,9 +133,16 @@
     ".bashrc".text = builtins.readFile ../dotfiles/.bashrc;
 
     ".config/" = {
-      source = ../dotfiles/.config;
+      source = lib.cleanSourceWith {
+        src = ../dotfiles/.config;
+        filter = path: _: path != toString ../dotfiles/.config/zed/settings.json;
+      };
       recursive = true;
     };
+
+    # Out of store so Zed can write its own settings back into the repo
+    ".config/zed/settings.json".source = config.lib.file.mkOutOfStoreSymlink
+      "${config.vars.homeDirectory}/nixos-config/dotfiles/.config/zed/settings.json";
   };
 
   # This value determines the Home Manager release that your configuration is
