@@ -51,6 +51,8 @@
 
   sunshine.enable = true;
 
+  podman.enable = true;
+
   nvidia.enable = true;
 
   services.greetd = {
