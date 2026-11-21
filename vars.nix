@@ -25,6 +25,11 @@
       type = lib.types.path;
     };
 
+    lanInterface = lib.mkOption {
+      description = "Network interface of the home LAN, the only one firewall ports are opened on";
+      type = lib.types.str;
+    };
+
     # hostname = lib.mkOption {
     #   description = "The hostname for the system";
     #   default = "default-hostname";

@@ -34,6 +34,7 @@
   ];
 
   vars.mainUser = "alex";
+  vars.lanInterface = "enp4s0";
 
   hyprland.enable = true;
   #  waybar.enable = true; # TODO make this an option in modules/waybar.nix
@@ -49,10 +50,7 @@
 
   wayvnc_prereq.enable = false;
 
-  kdeconnect_prereq = {
-    enable = true;
-    lanInterface = "enp4s0";
-  };
+  kdeconnect_prereq.enable = true;
 
   sunshine.enable = true;
 
