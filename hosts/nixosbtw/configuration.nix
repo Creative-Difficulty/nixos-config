@@ -145,6 +145,7 @@
 
   services.openssh = {
     enable = true;
+    openFirewall = false;
     settings = {
       AllowUsers = [ "${config.vars.mainUser}" ];
       PermitRootLogin = "no";
@@ -167,8 +168,7 @@
   };
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.interfaces.${config.vars.lanInterface}.allowedTCPPorts = [ 22 ];
 
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.
