@@ -67,6 +67,8 @@
 
   programs.eww.enable = true;
 
+  services.kdeconnect.enable = true;
+
   programs.nh = {
     enable = true;
     # Adds `nh hm` as an alias for `nh home`

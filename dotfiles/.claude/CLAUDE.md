@@ -47,5 +47,6 @@ Standing rules go in this file (`~/nixos-config/dotfiles/.claude/CLAUDE.md`), no
 - Program configs are real files in `dotfiles/.config/<prog>/` (linked recursively) plus `home.packages`, and must work without Nix. Use HM `programs.<prog>` only for what can't live in a file (systemd units, wrapping, secrets), never to generate a config file.
 - Don't move lockfiles into dotfiles.
 - Shell glue for one tool (aliases, wrappers) goes into that tool's package as a wrapper, never into `dotfiles/.bashrc`.
+- Firewall ports open to the home LAN only, declared with `networking.firewall.interfaces.<lan interface>` options, never raw iptables rules.
 - Don't suggest UWSM.
 - Longer explanations go in `CLAUDE_REMARKS.md`, only when I ask.

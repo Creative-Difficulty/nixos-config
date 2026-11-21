@@ -49,6 +49,11 @@
 
   wayvnc_prereq.enable = false;
 
+  kdeconnect_prereq = {
+    enable = true;
+    lanInterface = "enp4s0";
+  };
+
   sunshine.enable = true;
 
   podman.enable = true;
