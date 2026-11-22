@@ -82,6 +82,7 @@
     grub = {
       enable = true;
       devices = [ "nodev" ];
+      memtest86.enable = true;
       efiSupport = true;
       useOSProber = true;
       # Wait indefinitely to choose a boot option
@@ -91,6 +92,7 @@
     };
   };
 
+  boot.kernelParams = [ "nvme_core.default_ps_max_latency_us=0" ];
   networking.hostName = "nixosbtw";
 
   time.timeZone = "Europe/Vienna";
