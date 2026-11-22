@@ -5,13 +5,13 @@
 }:
 {
   options = {
-    sunshine.enable = lib.mkEnableOption "Whether to enable the on-demand Sunshine game stream host for Moonlight";
+    sunshine.enable = lib.mkEnableOption "Whether to enable the Sunshine game stream host for Moonlight";
   };
 
   config = lib.mkIf config.sunshine.enable {
     services.sunshine = {
       enable = true;
-      autoStart = false;
+      autoStart = true;
       capSysAdmin = true;
     };
 
