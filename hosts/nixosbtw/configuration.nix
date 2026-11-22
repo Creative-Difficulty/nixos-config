@@ -18,6 +18,11 @@
   # A power cut corrupted store paths once; fsync them so it can't happen again.
   nix.settings.fsync-store-paths = true;
 
+  # A memory-hungry build froze the whole desktop: swap gives headroom, and
+  # oomd kills the runaway process before the session starts thrashing.
+  zramSwap.enable = true;
+  systemd.oomd.enableUserSlices = true;
+
   imports = [
     ./hardware-configuration.nix
 
