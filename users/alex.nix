@@ -169,6 +169,8 @@
     zed-editor
     nixd
     jq # used by the Claude Code status line script
+    cloc
+    erdtree
 
     hyprsunset
     rofi
