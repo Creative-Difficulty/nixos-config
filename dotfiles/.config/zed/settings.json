@@ -7,6 +7,14 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "dock": "left",
+    "file_icons": true
+  },
+  "markdown_preview": {
+    "font_family": "Liberation Mono"
+  },
+  "disable_ai": true,
   "telemetry": {
     "diagnostics": false,
     "metrics": false,
