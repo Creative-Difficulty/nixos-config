@@ -20,7 +20,7 @@ Standing rules go in this file (`~/nixos-config/dotfiles/.claude/CLAUDE.md`), no
 - Commit yourself once a change is finished and you're confident I agree with it; don't ask first. Use a conventional-commit subject and a short "why" body, and commit everything you changed, including TODO edits. When unsure whether I agree, leave it uncommitted and suggest the message.
 - Open the summary by saying whether you committed (with the hash) or left it uncommitted.
 - Trivial settings that change often (e.g. the Claude Code effort level or model in `settings.json`) never get their own commit. Fold them into whatever commit comes next.
-- Never `git push`. Exceptions: in `~/Photostore` and `~/projects/saucysplat`, commit and push every change without asking. In `~/documents/Projects/Homer`, commit each finished step yourself but never push: I review and push, and pushing its `main` deploys. Deploying (e.g. `splat-deploy`, GitHub Pages, Cloudflare) is separate: only when I ask.
+- Never `git push`. Exceptions: in `~/Photostore`, `~/projects/saucysplat` and `~/documents/Projects/Homer`, commit and push every change without asking. Deploying (e.g. `splat-deploy`, GitHub Pages, Cloudflare) is separate: only when I ask.
 - Stage files by name, never `git add -A` or `git add .`.
 - Never create git worktrees inside a repo.
 - GitHub over SSH fails from your shell (the key needs a passphrase). Use HTTPS with `gh` as the credential helper, e.g. `git -c credential.helper= -c 'credential.helper=!gh auth git-credential' clone https://…`, and keep `origin` on SSH.
