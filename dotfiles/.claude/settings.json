@@ -20,5 +20,8 @@
   "autoMemoryDirectory": "/home/alex/.claude/projects/-home-alex-nixos-config/memory",
   "theme": "dark",
   "inputNeededNotifEnabled": false,
-  "agentPushNotifEnabled": false
+  "agentPushNotifEnabled": false,
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true
+  }
 }
