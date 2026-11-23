@@ -39,7 +39,7 @@
   ];
 
   vars.mainUser = "alex";
-  vars.lanInterface = "enp4s0";
+  vars.lanInterface = "enp3s0";
 
   hyprland.enable = true;
   #  waybar.enable = true; # TODO make this an option in modules/waybar.nix
