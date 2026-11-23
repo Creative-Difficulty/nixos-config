@@ -11,6 +11,7 @@
     ../unfree.nix
     ./programs/yazi/yazi.nix
     ./programs/wayvnc/wayvnc.nix
+    ./programs/direnv/direnv.nix
   ];
 
   unfree.allowed = [
