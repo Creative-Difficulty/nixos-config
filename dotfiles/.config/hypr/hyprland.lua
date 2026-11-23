@@ -297,6 +297,12 @@ hl.bind(mainMod .. " + l", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + k",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + j",  hl.dsp.focus({ direction = "down" }))
 
+-- Swap the active window's position and size with its neighbor
+hl.bind(mainMod .. " + SHIFT + h", hl.dsp.window.swap({ direction = "left" }))
+hl.bind(mainMod .. " + SHIFT + l", hl.dsp.window.swap({ direction = "right" }))
+hl.bind(mainMod .. " + SHIFT + k", hl.dsp.window.swap({ direction = "up" }))
+hl.bind(mainMod .. " + SHIFT + j", hl.dsp.window.swap({ direction = "down" }))
+
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({mode = "fullscreen", action = "toggle"}))
 
 -- Switch workspaces with mainMod + [0-9]
