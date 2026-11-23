@@ -92,7 +92,12 @@
     };
   };
 
-  boot.kernelParams = [ "nvme_core.default_ps_max_latency_us=0" ];
+  boot.kernelParams = [
+    "nvme_core.default_ps_max_latency_us=0"
+    "pcie_aspm=off"
+    "pcie_port_pm=off"
+  ];
+
   networking.hostName = "nixosbtw";
 
   time.timeZone = "Europe/Vienna";
