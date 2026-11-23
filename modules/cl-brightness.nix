@@ -17,10 +17,11 @@
   config =
     let
       connector = config.brightness.connector;
-      # ddcutil matches the connector's EDID to find nvidia's bus, since its name doesn't say which connector it serves
+      # ddcutil matches the connector's EDID to find nvidia's bus, since its name doesn't say which connector it serves.
+      # ddcutil 3 aborts when it can't find a cache dir for dynamic sleep data, and the service has no HOME
       findBus =
         if config.nvidia.enable then
-          ''ddcutil detect --terse | awk -v c="${connector}" '/I2C bus:/ {bus=$3} $0 ~ "DRM connector: *card[0-9]+-" c "$" {sub("/dev/", "", bus); print bus}' ''
+          ''ddcutil detect --terse --disable-dynamic-sleep | awk -v c="${connector}" '/I2C bus:/ {bus=$3} $0 ~ "DRM connector: *card[0-9]+-" c "$" {sub("/dev/", "", bus); print bus}' ''
         else
           ''grep -lx "${connector}" /sys/bus/i2c/devices/i2c-*/name | cut -d/ -f6'';
     in
