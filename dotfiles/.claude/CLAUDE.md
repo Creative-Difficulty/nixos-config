@@ -17,7 +17,7 @@ Standing rules go in this file (`~/nixos-config/dotfiles/.claude/CLAUDE.md`), no
 
 ## Git
 
-- By default, leave changes uncommitted and suggest a commit message (conventional-commit subject, short "why" body). I review and commit in lazygit. Commit yourself only when I say so, and then commit everything you changed, including TODO edits.
+- Commit yourself once a change is finished and you're confident I agree with it; don't ask first. Use a conventional-commit subject and a short "why" body, and commit everything you changed, including TODO edits. When unsure whether I agree, leave it uncommitted and suggest the message.
 - Trivial settings that change often (e.g. the Claude Code effort level or model in `settings.json`) never get their own commit. Fold them into whatever commit comes next.
 - Never `git push`. Exceptions: in `~/Photostore` and `~/projects/saucysplat`, commit and push every change without asking. In `~/documents/Projects/Homer`, commit each finished step yourself but never push: I review and push, and pushing its `main` deploys. Deploying (e.g. `splat-deploy`, GitHub Pages, Cloudflare) is separate: only when I ask.
 - Stage files by name, never `git add -A` or `git add .`.
