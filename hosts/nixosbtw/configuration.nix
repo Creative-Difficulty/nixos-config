@@ -39,7 +39,7 @@
   ];
 
   vars.mainUser = "alex";
-  vars.lanInterface = "enp3s0";
+  vars.lanInterface = "lan";
 
   hyprland.enable = true;
   #  waybar.enable = true; # TODO make this an option in modules/waybar.nix
@@ -99,6 +99,12 @@
   ];
 
   networking.hostName = "nixosbtw";
+
+  # The PCI-path name (enp3s0, enp4s0) shifts when PCIe devices change
+  systemd.network.links."10-lan" = {
+    matchConfig.PermanentMACAddress = "04:92:26:c3:6a:0c";
+    linkConfig.Name = "lan";
+  };
 
   time.timeZone = "Europe/Vienna";
   time.hardwareClockInLocalTime = true;
