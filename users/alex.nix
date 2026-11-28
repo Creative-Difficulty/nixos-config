@@ -81,6 +81,8 @@
         cat > $out/bin/nh <<'EOF'
         #!${pkgs.runtimeShell}
         if [ "$1" = hm ]; then shift; set -- home "$@"; fi
+        # Tab completion calls `COMPLETE=bash nh -- hm …`, so hm is the second argument there
+        if [ -n "''${COMPLETE:-}" ] && [ "''${2:-}" = hm ]; then set -- "$1" home "''${@:3}"; fi
         exec ${lib.getExe pkgs.nh} "$@"
         EOF
         chmod +x $out/bin/nh
