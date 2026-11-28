@@ -3,3 +3,5 @@ keybind = performable:ctrl+v=paste_from_clipboard
 keybind = ctrl+enter=unbind
 app-notifications=false
 
+background-opacity = 0.85
+background-blur = true
