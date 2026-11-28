@@ -129,8 +129,8 @@
 
     ".claude/CLAUDE.md".source = ../dotfiles/.claude/CLAUDE.md;
 
-    ".local/share/applications/librewolf-link.desktop".source =
-      ../dotfiles/.local/share/applications/librewolf-link.desktop;
+    ".local/share/applications/zen-link.desktop".source =
+      ../dotfiles/.local/share/applications/zen-link.desktop;
 
     # Note: Hyprland has to be enabled from the system module, home-manager just manages the configuration file
 

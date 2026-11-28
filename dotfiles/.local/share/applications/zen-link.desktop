@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=LibreWolf (link)
+Name=Zen (link)
 # Launched via systemd so Hyprland doesn't swallow the terminal a link was clicked in
-Exec=systemd-run --user --collect --quiet librewolf %u
+Exec=systemd-run --user --collect --quiet zen-beta %u
 NoDisplay=true
 MimeType=text/html;x-scheme-handler/http;x-scheme-handler/https;
