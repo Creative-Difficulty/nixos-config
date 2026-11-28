@@ -47,6 +47,7 @@ Standing rules go in this file (`~/nixos-config/dotfiles/.claude/CLAUDE.md`), no
 - Home Manager is standalone (`homeConfigurations`) on purpose. Never suggest turning it into a NixOS module.
 - User tools go in HM, not NixOS, so they carry over to nix-darwin. Truly system-level things, and whatever I explicitly put in NixOS, stay there. When an HM tool needs system-side setup (PAM, firewall), that goes in `modules/<tool>_prereq.nix` with `<tool>_prereq.enable`.
 - Program configs are real files in `dotfiles/.config/<prog>/` (linked recursively) plus `home.packages`, and must work without Nix. Use HM `programs.<prog>` only for what can't live in a file (systemd units, wrapping, secrets), never to generate a config file.
+- Never write config values inline in Nix. Even when Nix has to consume them (e.g. policies baked into a package), keep them in a plain file under `dotfiles/` and have Nix read it.
 - Don't move lockfiles into dotfiles.
 - Shell glue for one tool (aliases, wrappers) goes into that tool's package as a wrapper, never into `dotfiles/.bashrc`.
 - Firewall ports open to the home LAN only, declared with `networking.firewall.interfaces.<lan interface>` options, never raw iptables rules.
