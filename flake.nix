@@ -52,7 +52,6 @@
             # Give the configuration access to inputs of the flake and outputs
             specialArgs = { inherit inputs; };
             modules = [
-              ./hosts/nixosbtw/hardware-configuration.nix
               ./hosts/nixosbtw/configuration.nix
             ];
           }; # nixosbtw
