@@ -53,8 +53,6 @@
 
   disks.enable = true;
 
-  wayvnc_prereq.enable = false;
-
   kdeconnect_prereq.enable = true;
 
   hyprlock_prereq.enable = true;

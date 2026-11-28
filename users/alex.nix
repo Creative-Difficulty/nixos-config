@@ -10,7 +10,6 @@
     ../vars.nix
     ../unfree.nix
     ./programs/yazi/yazi.nix
-    ./programs/wayvnc/wayvnc.nix
     ./programs/direnv/direnv.nix
   ];
 
@@ -26,8 +25,6 @@
     enableShellWrapper = true;
     # yazi.toml is deployed through the recursive .config link below
   };
-
-  wayvnc.enable = false;
 
   programs.librewolf = {
     enable = false;
