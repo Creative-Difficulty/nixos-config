@@ -30,7 +30,7 @@
   wayvnc.enable = false;
 
   programs.librewolf = {
-    enable = true;
+    enable = false;
   };
 
   programs.ghostty = {
