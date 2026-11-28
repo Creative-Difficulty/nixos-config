@@ -83,6 +83,10 @@ end
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
+-- nvidia-vaapi-driver needs both for Zen's GPU video decoding
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("MOZ_DISABLE_RDD_SANDBOX", "1")
+
 
 -----------------------
 ----- PERMISSIONS -----
