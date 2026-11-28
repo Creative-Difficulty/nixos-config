@@ -140,14 +140,19 @@
     ".config/" = {
       source = lib.cleanSourceWith {
         src = ../dotfiles/.config;
-        filter = path: _: path != toString ../dotfiles/.config/zed/settings.json;
+        filter = path: _: !builtins.elem path [
+          (toString ../dotfiles/.config/zed/settings.json)
+          (toString ../dotfiles/.config/slick/slick/settings.json)
+        ];
       };
       recursive = true;
     };
 
-    # Out of store so Zed can write its own settings back into the repo
+    # Out of store so Zed and Slick can write their own settings back into the repo
     ".config/zed/settings.json".source = config.lib.file.mkOutOfStoreSymlink
       "${config.vars.homeDirectory}/nixos-config/dotfiles/.config/zed/settings.json";
+    ".config/slick/slick/settings.json".source = config.lib.file.mkOutOfStoreSymlink
+      "${config.vars.homeDirectory}/nixos-config/dotfiles/.config/slick/slick/settings.json";
   };
 
   # This value determines the Home Manager release that your configuration is

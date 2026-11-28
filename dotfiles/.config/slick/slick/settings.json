@@ -1,0 +1,29 @@
+{
+  "plugins": {
+    "AnonymiseFileNames": {
+      "enabled": true
+    },
+    "HuddleMuteDetector": {
+      "enabled": true
+    },
+    "HumanCount": {
+      "enabled": true
+    },
+    "InstalledApps": {
+      "enabled": true
+    },
+    "NotShitMarkdown": {
+      "enabled": true
+    },
+    "PrivateChannelMapper": {
+      "enabled": true
+    },
+    "SilentTyping": {
+      "enabled": true
+    },
+    "SlimMessageBox": {
+      "enabled": true
+    }
+  },
+  "theme": "catppuccin-frappe"
+}
