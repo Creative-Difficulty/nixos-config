@@ -175,6 +175,7 @@
 
     hyprsunset
     hyprlock
+    hyprpaper
     rofi
     grimblast
     satty
