@@ -396,6 +396,15 @@ hl.layer_rule({
     blur = true,
 })
 
+hl.layer_rule({
+    name  = "blur-rofi",
+    match = { namespace = "^rofi$" },
+
+    blur = true,
+    -- rofi's layer covers the whole screen, so only blur behind its visible box
+    ignore_alpha = 0,
+})
+
 -- Hyprland-run windowrule
 hl.window_rule({
     name  = "move-hyprland-run",

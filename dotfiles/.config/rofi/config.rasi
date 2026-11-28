@@ -6,3 +6,9 @@ configuration {
 }
 
 @theme "Arc-Dark"
+
+* {
+    background: rgba(45, 48, 59, 20%);
+    normal-background: transparent;
+    alternate-normal-background: transparent;
+}
