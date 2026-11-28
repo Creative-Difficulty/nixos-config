@@ -5,7 +5,6 @@
 {
   pkgs,
   config,
-  options,
   lib,
   inputs,
   ...
@@ -190,10 +189,6 @@
 
   networking.firewall.enable = true;
   networking.firewall.interfaces.${config.vars.lanInterface}.allowedTCPPorts = [ 22 ];
-  # Until the next reboot applies the lan rename, the NIC is still enp3s0
-  networking.firewall.interfaces.enp3s0 = lib.mkMerge (
-    map (def: def.lan or { }) options.networking.firewall.interfaces.definitions
-  );
 
   # Do NOT change this value unless you have manually inspected all the changes it would make to your configuration,
   # and migrated your data accordingly.
