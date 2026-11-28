@@ -235,7 +235,11 @@
       slackPackage = pkgs.slack;
     })
 
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # Zen only reads policies from its install folder, so they can't be a plain dotfile
+    (inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+      extraPolicies =
+        (builtins.fromJSON (builtins.readFile ../dotfiles/.config/zen/policies.json)).policies;
+    })
 
     qimgv
 
