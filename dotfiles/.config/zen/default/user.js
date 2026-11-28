@@ -5,3 +5,4 @@ user_pref("media.hardware-video-decoding.force-enabled", true);
 user_pref("media.av1.enabled", false);
 user_pref("ui.systemUsesDarkTheme", 1);
 user_pref("layout.css.prefers-color-scheme.content-override", 0);
+user_pref("browser.tabs.animate", false);
