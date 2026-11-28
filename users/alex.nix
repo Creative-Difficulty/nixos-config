@@ -235,6 +235,8 @@
       slackPackage = pkgs.slack;
     })
 
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+
     qimgv
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
