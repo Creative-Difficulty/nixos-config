@@ -174,6 +174,7 @@
     erdtree
 
     hyprsunset
+    hyprlock
     rofi
     grimblast
     satty

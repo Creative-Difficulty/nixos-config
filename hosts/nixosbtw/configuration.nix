@@ -58,6 +58,8 @@
 
   kdeconnect_prereq.enable = true;
 
+  hyprlock_prereq.enable = true;
+
   sunshine.enable = true;
 
   podman.enable = true;
